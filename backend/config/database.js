@@ -30,13 +30,16 @@ const testConnection = async () => {
     const connection = await pool.getConnection();
     console.log('✅ Conexión a la base de datos establecida');
     connection.release();
-  } catch (err) {
-    // En desarrollo muestra el error, en producción solo mensaje genérico
-    if (process.env.NODE_ENV === 'production') {
-      console.error('❌ Error al conectar con la base de datos');
-    } else {
-      console.error('❌ Error al conectar con la base de datos:', err.message);
-    }
+ } catch (err) {
+    // Mostrar error completo temporalmente para debug
+    console.error('❌ Error al conectar con la base de datos');
+    console.error('Error completo:', err);
+    console.error('Config:', {
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME
+    });
     process.exit(1);
   }
 };
