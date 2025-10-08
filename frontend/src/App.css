@@ -1,0 +1,692 @@
+/* ========================================
+   APP.CSS - ESTILOS GLOBALES RESPONSIVE
+   ======================================== */
+
+/* ========================================
+   RESET Y BASE
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   ESTRUCTURA PRINCIPAL
+   ======================================== */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 70px;
+  min-height: calc(100vh - 70px);
+}
+
+/* ========================================
+   ESTADOS DE CARGA
+   ======================================== */
+.cargando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  min-height: 300px;
+}
+
+.cargando p {
+  margin-top: 20px;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #D4A017;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   MENSAJES
+   ======================================== */
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #c33;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: slideInDown 0.3s ease;
+}
+
+.success-message {
+  background-color: #efe;
+  color: #3c3;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #3c3;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: slideInDown 0.3s ease;
+}
+
+.warning-message {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #ff9800;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   SIN RESULTADOS
+   ======================================== */
+.sin-resultados {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.sin-resultados h3 {
+  color: #2c2c2c;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sin-resultados p {
+  font-size: 16px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.sin-resultados .icono-vacio {
+  font-size: 64px;
+  opacity: 0.3;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   BOTONES GLOBALES
+   ======================================== */
+.btn-primary {
+  background-color: #D4A017;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #B8860B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #D4A017;
+  border: 2px solid #D4A017;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #D4A017;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-secondary:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* ========================================
+   ACCESO DENEGADO
+   ======================================== */
+.acceso-denegado {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 60px 40px;
+  background: white;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.acceso-denegado .icono-prohibido {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.acceso-denegado h2 {
+  color: #dc3545;
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.acceso-denegado p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.btn-volver {
+  background-color: #D4A017;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-volver:hover {
+  background-color: #B8860B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+/* ========================================
+   UTILIDADES GLOBALES
+   ======================================== */
+
+/* Texto */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Margin */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Padding */
+.pt-1 { padding-top: 0.5rem; }
+.pt-2 { padding-top: 1rem; }
+.pt-3 { padding-top: 1.5rem; }
+.pt-4 { padding-top: 2rem; }
+
+.pb-1 { padding-bottom: 0.5rem; }
+.pb-2 { padding-bottom: 1rem; }
+.pb-3 { padding-bottom: 1.5rem; }
+.pb-4 { padding-bottom: 2rem; }
+
+/* Display */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Flex */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   OVERLAY GLOBAL
+   ======================================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ========================================
+   SCROLLBAR PERSONALIZADO
+   ======================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4A017;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8860B;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D4A017 #f1f1f1;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1023px)
+   ======================================== */
+@media (max-width: 1023px) {
+  .main-content {
+    padding-top: 65px;
+  }
+
+  .acceso-denegado {
+    margin: 60px 20px;
+    padding: 50px 30px;
+  }
+
+  .acceso-denegado h2 {
+    font-size: 26px;
+  }
+
+  .acceso-denegado p {
+    font-size: 15px;
+  }
+
+  .sin-resultados .icono-vacio {
+    font-size: 56px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (hasta 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  .main-content {
+    padding-top: 60px;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* Mensajes */
+  .error-message,
+  .success-message,
+  .warning-message {
+    padding: 12px 16px;
+    font-size: 14px;
+    margin: 12px 0;
+  }
+
+  /* Cargando */
+  .cargando {
+    padding: 50px 20px;
+    min-height: 250px;
+  }
+
+  .cargando p {
+    font-size: 15px;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+
+  /* Sin resultados */
+  .sin-resultados {
+    padding: 50px 20px;
+  }
+
+  .sin-resultados h3 {
+    font-size: 22px;
+  }
+
+  .sin-resultados p {
+    font-size: 15px;
+  }
+
+  .sin-resultados .icono-vacio {
+    font-size: 48px;
+  }
+
+  /* Botones */
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    padding: 11px 20px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .btn-volver {
+    padding: 11px 24px;
+    font-size: 14px;
+  }
+
+  /* Acceso denegado */
+  .acceso-denegado {
+    margin: 40px 15px;
+    padding: 40px 25px;
+  }
+
+  .acceso-denegado .icono-prohibido {
+    font-size: 52px;
+  }
+
+  .acceso-denegado h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .acceso-denegado p {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO (hasta 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .main-content {
+    padding-top: 55px;
+  }
+
+  .error-message,
+  .success-message,
+  .warning-message {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .cargando {
+    padding: 40px 15px;
+    min-height: 200px;
+  }
+
+  .cargando p {
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+  }
+
+  .sin-resultados {
+    padding: 40px 15px;
+  }
+
+  .sin-resultados h3 {
+    font-size: 20px;
+  }
+
+  .sin-resultados p {
+    font-size: 14px;
+  }
+
+  .sin-resultados .icono-vacio {
+    font-size: 42px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .acceso-denegado {
+    margin: 30px 12px;
+    padding: 30px 20px;
+  }
+
+  .acceso-denegado .icono-prohibido {
+    font-size: 48px;
+  }
+
+  .acceso-denegado h2 {
+    font-size: 22px;
+  }
+
+  .acceso-denegado p {
+    font-size: 13px;
+  }
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  body {
+    background-color: white;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ========================================
+   DARK MODE (OPCIONAL)
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  .App {
+    background-color: #1a1a1a;
+  }
+
+  .main-content {
+    background-color: #1a1a1a;
+  }
+
+  .acceso-denegado {
+    background: #2c2c2c;
+    color: #e0e0e0;
+  }
+
+  .acceso-denegado h2 {
+    color: #ff6b6b;
+  }
+
+  .acceso-denegado p {
+    color: #b0b0b0;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-volver {
+    display: none;
+  }
+
+  .spinner {
+    display: none;
+  }
+
+  .main-content {
+    padding-top: 0;
+  }
+
+  * {
+    box-shadow: none !important;
+  }
+}

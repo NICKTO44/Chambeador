@@ -1,0 +1,1322 @@
+/* ========================================
+   DASHBOARD ADMIN - COMPLETAMENTE RESPONSIVE
+   PARTE 1/5: BASE Y HEADER
+   ======================================== */
+
+.dashboard-admin {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  padding-top: 100px; /* Espacio para navbar fijo */
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.admin-header {
+  margin-bottom: 30px;
+}
+
+.admin-header h2 {
+  color: #2c2c2c;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* ========================================
+   TABS DE NAVEGACIÓN
+   ======================================== */
+.admin-tabs {
+  display: flex;
+  gap: 12px;
+  border-bottom: 2px solid #e0e0e0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tab-btn:hover {
+  color: #2c2c2c;
+  background: #f8f9fa;
+}
+
+.tab-btn.active {
+  color: #D4A017;
+  border-bottom-color: #D4A017;
+}
+
+/* Badges en tabs */
+.tab-badge {
+  background: #dc3545;
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tab-badge-info {
+  background: #6c757d;
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
+
+.tab-badge-warning {
+  background: #ff9800;
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   ESTADOS GLOBALES
+   ======================================== */
+.cargando {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 16px;
+}
+
+.sin-pagos {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.icono-vacio {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.sin-pagos h3 {
+  color: #2c2c2c;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.sin-pagos p {
+  color: #999;
+  font-size: 15px;
+}
+
+/* ========================================
+   CONTADORES
+   ======================================== */
+.contador-pagos,
+.contador-trabajos {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+}
+
+.contador-pagos strong,
+.contador-trabajos strong {
+  font-size: 24px;
+  margin-right: 5px;
+  font-weight: 700;
+}
+/* ========================================
+   DASHBOARD ADMIN - PARTE 2/5
+   FILTROS Y ALERTAS
+   ======================================== */
+
+/* ========================================
+   FILTROS
+   ======================================== */
+.filtros-container {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.filtros-header h3 {
+  color: #2c2c2c;
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.btn-limpiar-filtros {
+  background: transparent;
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-limpiar-filtros:hover {
+  background: #dc3545;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.filtros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filtro-item label {
+  color: #2c2c2c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.input-busqueda,
+.select-filtro {
+  padding: 10px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-busqueda:focus,
+.select-filtro:focus {
+  outline: none;
+  border-color: #D4A017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.input-busqueda::placeholder {
+  color: #999;
+}
+
+.select-filtro {
+  cursor: pointer;
+  background: white;
+}
+
+.select-filtro option {
+  padding: 10px;
+}
+
+/* ========================================
+   ALERTA DE TRABAJOS ANTIGUOS
+   ======================================== */
+.alerta-trabajos-antiguos {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  border: 2px solid #ff9800;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alerta-icono {
+  font-size: 32px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.alerta-contenido {
+  flex: 1;
+  color: #856404;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.alerta-contenido strong {
+  color: #664d03;
+  font-weight: 700;
+}
+
+.btn-ver-antiguos {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-ver-antiguos:hover {
+  background: #f57c00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+/* ========================================
+   BADGES DE ANTIGÜEDAD
+   ======================================== */
+.badges-grupo {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.antiguedad-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.antiguedad-reciente {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.antiguedad-media {
+  background: #fff3cd;
+  color: #856404;
+  animation: parpadeoSuave 2s ease-in-out infinite;
+}
+
+.antiguedad-alta {
+  background: #ffe5b4;
+  color: #cc5200;
+  animation: parpadeoMedio 1.5s ease-in-out infinite;
+}
+
+.antiguedad-critica {
+  background: #f8d7da;
+  color: #721c24;
+  animation: parpadeoFuerte 1s ease-in-out infinite;
+}
+
+@keyframes parpadeoSuave {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes parpadeoMedio {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes parpadeoFuerte {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ========================================
+   BADGES DE ESTADO
+   ======================================== */
+.estado-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-activo {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-pendiente-pago {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.badge-pendiente-verificacion {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.badge-inactivo {
+  background: #f8d7da;
+  color: #721c24;
+}
+/* ========================================
+   DASHBOARD ADMIN - PARTE 3/5
+   TARJETAS DE PAGOS
+   ======================================== */
+
+/* ========================================
+   TABLA DE PAGOS
+   ======================================== */
+.tabla-pagos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pago-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #D4A017;
+  transition: all 0.3s ease;
+}
+
+.pago-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   HEADER DEL PAGO
+   ======================================== */
+.pago-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  gap: 15px;
+}
+
+.pago-id {
+  background: #f8f9fa;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #2c2c2c;
+  font-size: 14px;
+}
+
+.pago-fecha {
+  color: #999;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   INFO DEL PAGO
+   ======================================== */
+.pago-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+/* Columna izquierda: Info del trabajo */
+.info-trabajo h3 {
+  color: #2c2c2c;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.empleador-info {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.8;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.empleador-info strong {
+  color: #2c2c2c;
+  font-weight: 700;
+}
+
+/* Columna derecha: Detalles del pago */
+.info-pago {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pago-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  gap: 10px;
+}
+
+.pago-detalle .label {
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pago-detalle .valor {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+}
+
+.valor.codigo {
+  color: #D4A017;
+  font-family: monospace;
+  font-size: 15px;
+  background: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #D4A017;
+}
+
+.valor.monto {
+  color: #28a745;
+  font-size: 18px;
+}
+
+.valor.metodo {
+  color: #2c2c2c;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   ACCIONES DEL PAGO
+   ======================================== */
+.pago-acciones {
+  display: flex;
+  gap: 12px;
+  padding-top: 15px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.pago-acciones button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-rechazar {
+  background-color: #fff;
+  color: #dc3545;
+  border: 2px solid #dc3545 !important;
+}
+
+.btn-rechazar:hover:not(:disabled) {
+  background-color: #dc3545;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-verificar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-verificar:hover:not(:disabled) {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.pago-acciones button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+/* ========================================
+   DASHBOARD ADMIN - PARTE 4/5
+   TARJETAS DE TRABAJOS
+   ======================================== */
+
+/* ========================================
+   TABLA DE TRABAJOS
+   ======================================== */
+.tabla-trabajos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trabajo-card-admin {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #666;
+  transition: all 0.3s ease;
+}
+
+.trabajo-card-admin:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Trabajo antiguo con estilo especial */
+.trabajo-antiguo {
+  border-left: 4px solid #ff9800 !important;
+  background: linear-gradient(to right, #fff9e6 0%, white 10%);
+}
+
+.trabajo-antiguo:hover {
+  box-shadow: 0 4px 20px rgba(255, 152, 0, 0.2) !important;
+}
+
+/* ========================================
+   HEADER DEL TRABAJO
+   ======================================== */
+.trabajo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  gap: 15px;
+}
+
+.trabajo-info-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.trabajo-info-header h3 {
+  color: #2c2c2c;
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.btn-eliminar-trabajo {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-eliminar-trabajo:hover:not(:disabled) {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-eliminar-trabajo:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   DETALLES DEL TRABAJO
+   ======================================== */
+.trabajo-detalles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.detalle-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detalle-label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detalle-item span:not(.detalle-label) {
+  color: #2c2c2c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ========================================
+   DESCRIPCIÓN DEL TRABAJO
+   ======================================== */
+.trabajo-descripcion {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.trabajo-descripcion p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+/* ========================================
+   DASHBOARD ADMIN - PARTE 5/5
+   MODALES Y RESPONSIVE
+   ======================================== */
+
+/* ========================================
+   MODALES
+   ======================================== */
+.modal-overlay-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-notas {
+  background: white;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-notas h3 {
+  color: #2c2c2c;
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.modal-notas p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.trabajo-a-eliminar {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #dc3545;
+}
+
+.trabajo-a-eliminar strong {
+  color: #2c2c2c;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.advertencia-eliminar {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #856404;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-group-modal {
+  margin-bottom: 25px;
+}
+
+.form-group-modal label {
+  display: block;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group-modal textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  min-height: 100px;
+}
+
+.form-group-modal textarea:focus {
+  outline: none;
+  border-color: #D4A017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.modal-botones {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-botones button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar-modal {
+  background-color: transparent;
+  color: #666;
+  border: 2px solid #e0e0e0 !important;
+}
+
+.btn-cancelar-modal:hover {
+  border-color: #999 !important;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.btn-confirmar-modal {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-confirmar-modal:hover:not(:disabled) {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-rechazar-modal {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-rechazar-modal:hover:not(:disabled) {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-eliminar-modal {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-eliminar-modal:hover:not(:disabled) {
+  background-color: #bd2130;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.modal-botones button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1023px)
+   ======================================== */
+@media (max-width: 1023px) {
+  .dashboard-admin {
+    padding: 30px 20px;
+    padding-top: 90px;
+  }
+
+  .admin-header h2 {
+    font-size: 26px;
+  }
+
+  .pago-card,
+  .trabajo-card-admin {
+    padding: 20px;
+  }
+
+  .pago-info {
+    gap: 20px;
+  }
+
+  .trabajo-detalles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (hasta 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  .dashboard-admin {
+    padding: 20px 15px;
+    padding-top: 80px;
+  }
+
+  /* Header */
+  .admin-header h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  /* Tabs */
+  .admin-tabs {
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: none;
+  }
+
+  .tab-btn {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    border-radius: 8px;
+  }
+
+  .tab-btn.active {
+    border-left-color: #D4A017;
+    border-bottom-color: transparent;
+    background: #f8f9fa;
+  }
+
+  /* Contadores */
+  .contador-pagos,
+  .contador-trabajos {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .contador-pagos strong,
+  .contador-trabajos strong {
+    font-size: 20px;
+  }
+
+  /* Filtros */
+  .filtros-container {
+    padding: 15px;
+  }
+
+  .filtros-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .filtros-header h3 {
+    font-size: 16px;
+  }
+
+  .btn-limpiar-filtros {
+    width: 100%;
+  }
+
+  .filtros-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Alerta trabajos antiguos */
+  .alerta-trabajos-antiguos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .alerta-icono {
+    font-size: 40px;
+  }
+
+  .alerta-contenido {
+    font-size: 14px;
+  }
+
+  .btn-ver-antiguos {
+    margin-left: 0;
+    margin-top: 12px;
+    width: 100%;
+  }
+
+  .badges-grupo {
+    justify-content: center;
+  }
+
+  .antiguedad-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  /* Tarjeta de pago */
+  .pago-card {
+    padding: 18px;
+  }
+
+  .pago-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pago-id {
+    font-size: 13px;
+  }
+
+  .pago-fecha {
+    font-size: 12px;
+  }
+
+  .pago-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .info-trabajo h3 {
+    font-size: 17px;
+  }
+
+  .empleador-info {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .pago-detalle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .pago-detalle .valor {
+    text-align: left;
+  }
+
+  .valor.codigo {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+
+  .valor.monto {
+    font-size: 16px;
+  }
+
+  .pago-acciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pago-acciones button {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  /* Tarjeta de trabajo */
+  .trabajo-card-admin {
+    padding: 18px;
+  }
+
+  .trabajo-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trabajo-info-header h3 {
+    font-size: 17px;
+  }
+
+  .btn-eliminar-trabajo {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .trabajo-detalles {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .detalle-label {
+    font-size: 11px;
+  }
+
+  .detalle-item span:not(.detalle-label) {
+    font-size: 13px;
+  }
+
+  .trabajo-descripcion {
+    padding: 10px;
+  }
+
+  .trabajo-descripcion p {
+    font-size: 13px;
+  }
+
+  /* Modales */
+  .modal-notas {
+    padding: 25px 20px;
+    margin: 10px;
+  }
+
+  .modal-notas h3 {
+    font-size: 20px;
+  }
+
+  .modal-notas p {
+    font-size: 14px;
+  }
+
+  .trabajo-a-eliminar {
+    padding: 12px;
+  }
+
+  .trabajo-a-eliminar strong {
+    font-size: 15px;
+  }
+
+  .advertencia-eliminar {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .form-group-modal textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .modal-botones {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .modal-botones button {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  /* Sin pagos */
+  .sin-pagos {
+    padding: 60px 20px;
+  }
+
+  .icono-vacio {
+    font-size: 48px;
+  }
+
+  .sin-pagos h3 {
+    font-size: 20px;
+  }
+
+  .sin-pagos p {
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO (hasta 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  .dashboard-admin {
+    padding: 15px 12px;
+    padding-top: 75px;
+  }
+
+  .admin-header h2 {
+    font-size: 22px;
+  }
+
+  .tab-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .pago-card,
+  .trabajo-card-admin {
+    padding: 15px;
+  }
+
+  .info-trabajo h3,
+  .trabajo-info-header h3 {
+    font-size: 16px;
+  }
+
+  .estado-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .modal-notas {
+    padding: 20px 16px;
+  }
+}
+
+/* ========================================
+   MEJORAS ADICIONALES
+   ======================================== */
+
+/* Smooth transitions */
+.pago-card,
+.trabajo-card-admin,
+.tab-btn,
+.btn-eliminar-trabajo,
+.pago-acciones button {
+  transition: all 0.3s ease;
+}
+
+/* Print styles (opcional) */
+@media print {
+  .admin-tabs,
+  .pago-acciones,
+  .btn-eliminar-trabajo,
+  .filtros-container {
+    display: none;
+  }
+
+  .pago-card,
+  .trabajo-card-admin {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}
+
+/* ========== VISTA PUBLICAR TRABAJO (ADMIN) ========== */
+.vista-publicar-admin {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.info-admin-publicar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.icono-info-admin {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.info-admin-publicar strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.info-admin-publicar p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* Ocultar aviso de pago cuando es admin */
+.vista-publicar-admin .aviso-pago {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-admin-publicar {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .icono-info-admin {
+    font-size: 28px;
+  }
+}

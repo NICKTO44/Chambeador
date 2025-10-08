@@ -1,0 +1,36 @@
+cat > .gitignore << 'EOF'
+# Backend
+backend/node_modules/
+backend/.env
+backend/.env.local
+backend/.env.production
+backend/*.log
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/*.log
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y extensiones
+.vscode/
+.idea/
+.history/
+*.swp
+*.swo
+*~
+
+# Local History (VS Code extension)
+.history/
+**/.history/
+EOF

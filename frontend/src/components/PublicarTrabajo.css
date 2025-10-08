@@ -1,0 +1,440 @@
+/* ========================================
+   PUBLICAR TRABAJO - COMPLETAMENTE RESPONSIVE
+   ======================================== */
+
+.publicar-trabajo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  padding-top: 100px; /* Espacio para navbar fijo */
+}
+
+/* ========================================
+   CARD PRINCIPAL
+   ======================================== */
+.publicar-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.publicar-card h2 {
+  color: #2c2c2c;
+  font-size: 30px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.subtitulo {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   AVISO DE PAGO
+   ======================================== */
+.aviso-pago {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+  border: 2px solid #D4A017;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 160, 23, 0);
+  }
+}
+
+.icono-info {
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.texto-aviso {
+  flex: 1;
+}
+
+.texto-aviso strong {
+  color: #2c2c2c;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.texto-aviso p {
+  color: #555;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========================================
+   FORMULARIO
+   ======================================== */
+.publicar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.publicar-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.publicar-form label {
+  color: #2c2c2c;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.publicar-form input,
+.publicar-form select,
+.publicar-form textarea {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.publicar-form input:focus,
+.publicar-form select:focus,
+.publicar-form textarea:focus {
+  outline: none;
+  border-color: #D4A017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.publicar-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.publicar-form small {
+  color: #999;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ========================================
+   FORM ROW (Campos en fila)
+   ======================================== */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ========================================
+   ACCIONES DEL FORMULARIO
+   ======================================== */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 15px;
+  padding-top: 25px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  color: #666;
+  border: 2px solid #e0e0e0;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  border-color: #999;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.btn-publicar {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-publicar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.5s ease;
+}
+
+.btn-publicar:hover:not(:disabled) {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+.btn-publicar:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.btn-publicar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1023px)
+   ======================================== */
+@media (max-width: 1023px) {
+  .publicar-trabajo-container {
+    padding: 30px 20px;
+    padding-top: 90px;
+  }
+
+  .publicar-card {
+    padding: 35px 30px;
+  }
+
+  .publicar-card h2 {
+    font-size: 28px;
+  }
+
+  .form-row {
+    gap: 18px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (hasta 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  .publicar-trabajo-container {
+    padding: 20px 15px;
+    padding-top: 80px;
+  }
+
+  /* Card */
+  .publicar-card {
+    padding: 25px 20px;
+    border-radius: 10px;
+  }
+
+  .publicar-card h2 {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .subtitulo {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+
+  /* Aviso de pago */
+  .aviso-pago {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 16px;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .icono-info {
+    font-size: 32px;
+  }
+
+  .texto-aviso strong {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .texto-aviso p {
+    font-size: 13px;
+  }
+
+  /* Formulario */
+  .publicar-form {
+    gap: 20px;
+  }
+
+  .publicar-form label {
+    font-size: 13px;
+  }
+
+  .publicar-form input,
+  .publicar-form select,
+  .publicar-form textarea {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .publicar-form textarea {
+    min-height: 100px;
+  }
+
+  .publicar-form small {
+    font-size: 12px;
+  }
+
+  /* Form Row: 1 columna en móvil */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Acciones */
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+    padding-top: 20px;
+  }
+
+  .btn-cancelar,
+  .btn-publicar {
+    width: 100%;
+    padding: 13px 24px;
+    font-size: 15px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO (hasta 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  .publicar-trabajo-container {
+    padding: 15px 12px;
+    padding-top: 75px;
+  }
+
+  .publicar-card {
+    padding: 20px 16px;
+  }
+
+  .publicar-card h2 {
+    font-size: 22px;
+  }
+
+  .subtitulo {
+    font-size: 13px;
+  }
+
+  .aviso-pago {
+    padding: 15px 12px;
+  }
+
+  .icono-info {
+    font-size: 28px;
+  }
+
+  .texto-aviso strong {
+    font-size: 14px;
+  }
+
+  .texto-aviso p {
+    font-size: 12px;
+  }
+
+  .publicar-form {
+    gap: 18px;
+  }
+
+  .publicar-form input,
+  .publicar-form select,
+  .publicar-form textarea {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .btn-cancelar,
+  .btn-publicar {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   MEJORAS DE ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible para navegación por teclado */
+.publicar-form input:focus-visible,
+.publicar-form select:focus-visible,
+.publicar-form textarea:focus-visible {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+}
+
+/* Estados de error (por si los agregas después) */
+.publicar-form input.error,
+.publicar-form select.error,
+.publicar-form textarea.error {
+  border-color: #ff6b6b;
+}
+
+.publicar-form .error-message {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Loading state para el botón */
+.btn-publicar.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn-publicar.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.6s linear infinite;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}

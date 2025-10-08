@@ -1,0 +1,407 @@
+/* ========================================
+   BANNER CONTACTO - COMPLETAMENTE RESPONSIVE
+   ======================================== */
+
+.banner-contacto {
+  position: fixed;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border-radius: 20px;
+  z-index: 999;
+  width: 80px;
+  animation: slideInLeft 0.6s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+
+/* ========================================
+   CONTENIDO DEL BANNER
+   ======================================== */
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+/* ========================================
+   ICONO DEL MEGÁFONO
+   ======================================== */
+.banner-icon {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  border-radius: 20px;
+  padding: 35px 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icono-megafono {
+  font-size: 40px;
+  animation: bounce 2.5s infinite;
+  display: block;
+  line-height: 1;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ========================================
+   TEXTO VERTICAL
+   ======================================== */
+.banner-text {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  border-radius: 20px;
+  padding: 30px 15px;
+  box-shadow: 0 8px 30px rgba(212, 160, 23, 0.5);
+  width: 100%;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  margin: 0;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner-text h3 {
+  color: white;
+  font-size: 13px;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+.banner-text p {
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   BOTÓN WHATSAPP
+   ======================================== */
+.banner-actions {
+  width: 100%;
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 30px 15px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  width: 100%;
+}
+
+.btn-whatsapp:hover {
+  background-color: #20BA5A;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ========================================
+   RESPONSIVE - DESKTOP GRANDE (>1400px)
+   ======================================== */
+@media (min-width: 1400px) {
+  .banner-contacto {
+    left: 20px;
+    width: 85px;
+  }
+
+  .banner-icon {
+    padding: 38px 16px;
+  }
+
+  .icono-megafono {
+    font-size: 44px;
+  }
+
+  .banner-text {
+    min-height: 320px;
+    padding: 32px 16px;
+  }
+
+  .banner-text h3 {
+    font-size: 14px;
+  }
+
+  .banner-text p {
+    font-size: 11px;
+  }
+
+  .whatsapp-svg {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - TABLET GRANDE (1024px - 1199px)
+   ======================================== */
+@media (max-width: 1199px) and (min-width: 1024px) {
+  .banner-contacto {
+    left: 12px;
+    width: 75px;
+    gap: 12px;
+  }
+
+  .banner-icon {
+    padding: 30px 12px;
+  }
+
+  .icono-megafono {
+    font-size: 36px;
+  }
+
+  .banner-text {
+    min-height: 280px;
+    padding: 25px 12px;
+  }
+
+  .banner-text h3 {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .banner-text p {
+    font-size: 9px;
+  }
+
+  .btn-whatsapp {
+    padding: 25px 12px;
+  }
+
+  .whatsapp-svg {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1023px)
+   Banner se convierte en flotante inferior
+   ======================================== */
+@media (max-width: 1023px) {
+  .banner-contacto {
+    position: fixed;
+    left: auto;
+    right: 20px;
+    bottom: 20px;
+    top: auto;
+    transform: none;
+    width: 60px;
+    height: 60px;
+    animation: slideInBottom 0.6s ease-out;
+    gap: 0;
+  }
+
+  @keyframes slideInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .banner-content {
+    display: none;
+  }
+
+  .banner-icon,
+  .banner-text {
+    display: none;
+  }
+
+  .banner-actions {
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+  }
+
+  .btn-whatsapp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
+  }
+
+  .whatsapp-svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (hasta 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  .banner-contacto {
+    right: 15px;
+    bottom: 15px;
+    width: 56px;
+    height: 56px;
+    z-index: 1000;
+  }
+
+  .btn-whatsapp {
+    box-shadow: 0 3px 15px rgba(37, 211, 102, 0.5);
+  }
+
+  .btn-whatsapp:hover {
+    transform: scale(1.08);
+  }
+
+  .whatsapp-svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO (hasta 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  .banner-contacto {
+    right: 12px;
+    bottom: 12px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ========================================
+   ANIMACIÓN DE PULSO EN MÓVIL
+   ======================================== */
+@media (max-width: 1023px) {
+  .btn-whatsapp {
+    animation: pulseMobile 2s infinite;
+  }
+
+  @keyframes pulseMobile {
+    0% {
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.8), 
+                  0 0 0 8px rgba(37, 211, 102, 0.1);
+    }
+    100% {
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+    }
+  }
+}
+
+/* ========================================
+   ESTADOS ESPECIALES
+   ======================================== */
+
+/* Cuando el usuario hace scroll hacia abajo */
+.banner-contacto.scrolled {
+  opacity: 0.9;
+}
+
+.banner-contacto.scrolled:hover {
+  opacity: 1;
+}
+
+/* Dark mode (opcional) */
+@media (prefers-color-scheme: dark) {
+  .banner-icon {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  }
+
+  .banner-text {
+    background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+  }
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible para navegación por teclado */
+.btn-whatsapp:focus-visible {
+  outline: 3px solid #25D366;
+  outline-offset: 4px;
+}
+
+/* Reduce motion para usuarios con preferencias */
+@media (prefers-reduced-motion: reduce) {
+  .banner-contacto {
+    animation: none;
+  }
+
+  .icono-megafono {
+    animation: none;
+  }
+
+  .btn-whatsapp {
+    animation: none;
+    transition: none;
+  }
+
+  .btn-whatsapp:hover {
+    transform: none;
+  }
+}
+
+/* ========================================
+   PRINT (Ocultar en impresión)
+   ======================================== */
+@media print {
+  .banner-contacto {
+    display: none;
+  }
+}
