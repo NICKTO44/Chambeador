@@ -1,9 +1,7 @@
-cat > .gitignore << 'EOF'
 # Backend
 backend/node_modules/
 backend/.env
 backend/.env.local
-backend/.env.production
 backend/*.log
 
 # Frontend
@@ -11,7 +9,6 @@ frontend/node_modules/
 frontend/build/
 frontend/.env
 frontend/.env.local
-frontend/.env.production
 frontend/*.log
 
 # Logs
@@ -33,4 +30,8 @@ Thumbs.db
 # Local History (VS Code extension)
 .history/
 **/.history/
-EOF
+
+# ==========================================
+# IMPORTANTE: .env.production NO se ignora
+# Vercel necesita este archivo en el repo
+# ==========================================
