@@ -625,3 +625,30 @@
     height: 14px;
   }
 }
+
+/* Campo especial para admin */
+.campo-admin {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #ffc107;
+}
+
+.campo-admin label {
+  color: #856404;
+  font-weight: 600;
+}
+
+.campo-admin-ayuda {
+  color: #856404 !important;
+  font-weight: 500;
+}
+
+.campo-admin input {
+  border: 2px solid #ffc107;
+}
+
+.campo-admin input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+}

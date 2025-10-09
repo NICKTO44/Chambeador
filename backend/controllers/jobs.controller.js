@@ -107,11 +107,12 @@ const getMisPublicaciones = async (req, res) => {
   }
 };
 
+
 // Crear un nuevo trabajo
 // Crear un nuevo trabajo
 const createJob = async (req, res) => {
   try {
-    const { titulo, descripcion, categoria, pago_estimado, ubicacion, contacto } = req.body;
+    const { titulo, descripcion, categoria, pago_estimado, ubicacion, contacto, telefono_contacto } = req.body;
 
     // Validaciones
     if (!titulo || !descripcion || !categoria) {
@@ -121,23 +122,30 @@ const createJob = async (req, res) => {
     // ✨ NUEVO: Detectar si el usuario es admin
     const esAdmin = req.user.rol === 'admin';
 
-    let estado, fechaExpiracion;
+    // ✨ NUEVO: Validar teléfono para admin
+    if (esAdmin && !telefono_contacto) {
+      return res.status(400).json({ error: 'El teléfono de contacto es obligatorio para publicaciones de admin' });
+    }
+
+    let estado, fechaExpiracion, telefonoFinal;
 
     if (esAdmin) {
       // Admin: publicar directamente activo con expiración de 7 días
       estado = 'activo';
       fechaExpiracion = new Date();
       fechaExpiracion.setDate(fechaExpiracion.getDate() + 7);
+      telefonoFinal = telefono_contacto; // ✨ Usar teléfono ingresado por admin
     } else {
       // Empleador: requiere pago
       estado = 'pendiente_pago';
       fechaExpiracion = null;
+      telefonoFinal = req.user.telefono; // ✨ Usar teléfono del usuario logueado
     }
 
     const [result] = await pool.query(
-      `INSERT INTO trabajos (empleador_id, titulo, descripcion, categoria, pago_estimado, ubicacion, contacto, estado, fecha_expiracion)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [req.user.id, titulo, descripcion, categoria, pago_estimado || null, ubicacion || null, contacto || null, estado, fechaExpiracion]
+      `INSERT INTO trabajos (empleador_id, titulo, descripcion, categoria, pago_estimado, ubicacion, contacto, telefono_contacto, estado, fecha_expiracion)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [req.user.id, titulo, descripcion, categoria, pago_estimado || null, ubicacion || null, contacto || null, telefonoFinal, estado, fechaExpiracion]
     );
 
     if (esAdmin) {

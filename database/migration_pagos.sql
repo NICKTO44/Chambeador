@@ -190,3 +190,11 @@ ADD INDEX idx_documento (numero_documento);
 UPDATE configuracion 
 SET valor = 'Cristhian Quispe Challco' 
 WHERE clave = 'nombre_yape';
+
+-- Agregar columna telefono_contacto a la tabla trabajos
+ALTER TABLE trabajos 
+ADD COLUMN telefono_contacto VARCHAR(20) DEFAULT NULL
+AFTER contacto;
+
+-- Verificar que se agregó correctamente
+DESCRIBE trabajos;

@@ -11,9 +11,11 @@ function MisPublicaciones({ token }) {
   const [trabajoEditando, setTrabajoEditando] = useState(null);
   const [trabajoRenovando, setTrabajoRenovando] = useState(null);
   const [mostrarModalPago, setMostrarModalPago] = useState(false);
+  const [precioRenovacion, setPrecioRenovacion] = useState('10.00');
 
   useEffect(() => {
     cargarMisTrabajos();
+    cargarPrecioRenovacion();
   }, []);
 
   const cargarMisTrabajos = async () => {
@@ -38,6 +40,22 @@ function MisPublicaciones({ token }) {
       setError(err.message);
     } finally {
       setCargando(false);
+    }
+  };
+  const cargarPrecioRenovacion = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/payments/configuracion`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPrecioRenovacion(data.precio_renovacion || data.precio_publicacion);
+      }
+    } catch (err) {
+      console.log('Error al cargar precio:', err);
     }
   };
 
@@ -163,7 +181,7 @@ function MisPublicaciones({ token }) {
 
   const obtenerMensajeExpiracion = (trabajo) => {
     const dias = calcularDiasRestantes(trabajo.fecha_expiracion);
-    
+
     if (!trabajo.fecha_expiracion) {
       return null;
     }
@@ -217,11 +235,11 @@ function MisPublicaciones({ token }) {
                     <span className="icono-alerta">{mensajeExpiracion.icono}</span>
                     <span className="texto-alerta">{mensajeExpiracion.texto}</span>
                     {diasRestantes >= 0 && (
-                      <button 
+                      <button
                         className="btn-renovar-inline"
                         onClick={() => handleRenovar(trabajo)}
                       >
-                        Renovar por S/ 10
+                        Renovar por S/ {precioRenovacion}
                       </button>
                     )}
                   </div>
@@ -232,10 +250,10 @@ function MisPublicaciones({ token }) {
                     <h3>{trabajo.titulo}</h3>
                     <span className="categoria-badge">{trabajo.categoria}</span>
                     <span className={`estado-badge ${trabajo.estado}`}>
-                      {trabajo.estado === 'activo' ? '✓ Activo' : 
-                       trabajo.estado === 'pendiente_pago' ? '⏳ Pendiente pago' :
-                       trabajo.estado === 'pendiente_verificacion' ? '🔄 Verificando pago' :
-                       '✕ Inactivo'}
+                      {trabajo.estado === 'activo' ? '✓ Activo' :
+                        trabajo.estado === 'pendiente_pago' ? '⏳ Pendiente pago' :
+                          trabajo.estado === 'pendiente_verificacion' ? '🔄 Verificando pago' :
+                            '✕ Inactivo'}
                     </span>
                     {mensajeExpiracion && diasRestantes > 3 && (
                       <span className="info-expiracion">
@@ -268,7 +286,7 @@ function MisPublicaciones({ token }) {
                   <span>
                     💰 {trabajo.pago_estimado
                       ? `S/ ${parseFloat(trabajo.pago_estimado).toFixed(2)}`
-                      : 'A convenir'}
+                      : 'A Tratar'}
                   </span>
                   <span>📅 {formatearFecha(trabajo.created_at)}</span>
                 </div>
@@ -396,15 +414,17 @@ function MisPublicaciones({ token }) {
       {/* Modal de pago para renovación */}
       {mostrarModalPago && trabajoRenovando && (
         <ModalPagoYape
-          monto={10.00}
-          onPagoConfirmado={handlePagoRenovacion}
-          onCancelar={() => {
+          trabajo_id={trabajoRenovando.id}
+          token={token}
+          onPagoConfirmado={() => {
+            setMostrarModalPago(false);
+            setTrabajoRenovando(null);
+            cargarMisTrabajos();
+          }}
+          onCerrar={() => {
             setMostrarModalPago(false);
             setTrabajoRenovando(null);
           }}
-          textoBoton="Confirmar Renovación"
-          titulo={`Renovar: ${trabajoRenovando.titulo}`}
-          descripcion="Paga S/ 10.00 para extender tu publicación por 7 días más"
         />
       )}
     </div>

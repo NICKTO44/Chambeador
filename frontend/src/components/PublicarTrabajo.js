@@ -4,14 +4,15 @@ import './PublicarTrabajo.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-function PublicarTrabajo({ token, onPublicado }) {
+function PublicarTrabajo({ token, onPublicado, userRole }) {
   const [formData, setFormData] = useState({
     titulo: '',
     descripcion: '',
     categoria: '',
     pago_estimado: '',
     ubicacion: '',
-    contacto: ''
+    contacto: '',
+    telefono_contacto: '' // ✨ NUEVO campo
   });
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
@@ -21,8 +22,11 @@ function PublicarTrabajo({ token, onPublicado }) {
   const [mostrarModalPago, setMostrarModalPago] = useState(false);
   const [trabajoCreado, setTrabajoCreado] = useState(null);
   
-  // ✨ NUEVO: Estado para precio dinámico
+  // Estado para precio dinámico
   const [precioPublicacion, setPrecioPublicacion] = useState('10.00');
+  
+  // ✨ NUEVO: Detectar si es admin
+  const [esAdmin, setEsAdmin] = useState(false);
 
   const categorias = [
     'Construcción',
@@ -37,10 +41,11 @@ function PublicarTrabajo({ token, onPublicado }) {
     'Otros'
   ];
 
-  // ✨ NUEVO: Cargar precio de publicación al iniciar
+  // Cargar precio y verificar rol
   useEffect(() => {
-    const cargarPrecio = async () => {
+    const cargarConfiguracion = async () => {
       try {
+        // Cargar precio
         const response = await fetch(`${API_URL}/api/payments/configuracion`, {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -51,14 +56,24 @@ function PublicarTrabajo({ token, onPublicado }) {
           const data = await response.json();
           setPrecioPublicacion(data.precio_publicacion);
         }
+
+        // ✨ NUEVO: Verificar si es admin (decodificar token o recibir como prop)
+        if (userRole === 'admin') {
+          setEsAdmin(true);
+        } else {
+          // Decodificar token para verificar rol
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          if (payload.rol === 'admin') {
+            setEsAdmin(true);
+          }
+        }
       } catch (err) {
-        console.log('Error al cargar precio:', err);
-        // Mantener valor por defecto
+        console.log('Error al cargar configuración:', err);
       }
     };
     
-    cargarPrecio();
-  }, [token]);
+    cargarConfiguracion();
+  }, [token, userRole]);
 
   const handleChange = (e) => {
     setFormData({
@@ -71,6 +86,13 @@ function PublicarTrabajo({ token, onPublicado }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // ✨ NUEVO: Validar teléfono para admin
+    if (esAdmin && !formData.telefono_contacto.trim()) {
+      setError('El teléfono de contacto del cliente es obligatorio');
+      return;
+    }
+
     setCargando(true);
     setError('');
     setExito(false);
@@ -91,7 +113,6 @@ function PublicarTrabajo({ token, onPublicado }) {
         throw new Error(data.error || 'Error al crear trabajo');
       }
 
-      // ✨ NUEVO: Verificar si el usuario es admin
       if (data.esAdmin) {
         // Admin: Publicado directamente
         setExito(true);
@@ -101,7 +122,8 @@ function PublicarTrabajo({ token, onPublicado }) {
           categoria: '',
           pago_estimado: '',
           ubicacion: '',
-          contacto: ''
+          contacto: '',
+          telefono_contacto: ''
         });
 
         setTimeout(() => {
@@ -128,7 +150,8 @@ function PublicarTrabajo({ token, onPublicado }) {
       categoria: '',
       pago_estimado: '',
       ubicacion: '',
-      contacto: ''
+      contacto: '',
+      telefono_contacto: ''
     });
 
     setTimeout(() => {
@@ -214,7 +237,7 @@ function PublicarTrabajo({ token, onPublicado }) {
                 step="0.01"
                 min="0"
               />
-              <small>Déjalo en blanco si es "a convenir"</small>
+              <small>Déjalo en blanco si es "A Tratar"</small>
             </div>
 
             <div className="form-group">
@@ -231,6 +254,29 @@ function PublicarTrabajo({ token, onPublicado }) {
             </div>
           </div>
 
+          {/* ✨ NUEVO: Campo de teléfono - Solo visible para ADMIN */}
+          {esAdmin && (
+            <div className="form-group campo-admin">
+              <label htmlFor="telefono_contacto">
+                📞 Teléfono de contacto del cliente *
+              </label>
+              <input
+                type="tel"
+                id="telefono_contacto"
+                name="telefono_contacto"
+                value={formData.telefono_contacto}
+                onChange={handleChange}
+                required={esAdmin}
+                placeholder="Ej: 987654321"
+                maxLength="20"
+                pattern="[0-9]{9,20}"
+              />
+              <small className="campo-admin-ayuda">
+                ℹ️ Este número se usará en los botones de WhatsApp y llamadas
+              </small>
+            </div>
+          )}
+
           <div className="form-group">
             <label htmlFor="contacto">Información de contacto adicional</label>
             <input
@@ -239,20 +285,26 @@ function PublicarTrabajo({ token, onPublicado }) {
               name="contacto"
               value={formData.contacto}
               onChange={handleChange}
-              placeholder="Ej: WhatsApp, email, horario de contacto"
+              placeholder="Ej: Llamar después de las 6pm, email, horarios"
               maxLength="100"
             />
-            <small>Tu teléfono registrado se mostrará automáticamente</small>
+            <small>
+              {esAdmin 
+                ? 'Información extra que aparecerá en la descripción'
+                : 'Tu teléfono registrado se mostrará automáticamente'}
+            </small>
           </div>
 
-          {/* ✨ CORREGIDO: Precio dinámico */}
-          <div className="aviso-pago">
-            <div className="icono-info">ℹ️</div>
-            <div className="texto-aviso">
-              <strong>Costo de publicación: S/ {precioPublicacion}</strong>
-              <p>Después de completar el formulario, procederás a realizar el pago mediante Yape para activar tu publicación.</p>
+          {/* Aviso de pago - Solo para empleadores */}
+          {!esAdmin && (
+            <div className="aviso-pago">
+              <div className="icono-info">ℹ️</div>
+              <div className="texto-aviso">
+                <strong>Costo de publicación: S/ {precioPublicacion}</strong>
+                <p>Después de completar el formulario, procederás a realizar el pago mediante Yape para activar tu publicación.</p>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="form-actions">
             <button
@@ -263,7 +315,7 @@ function PublicarTrabajo({ token, onPublicado }) {
               Cancelar
             </button>
             <button type="submit" className="btn-publicar" disabled={cargando}>
-              {cargando ? 'Procesando...' : 'Continuar al Pago →'}
+              {cargando ? 'Procesando...' : esAdmin ? 'Publicar Trabajo →' : 'Continuar al Pago →'}
             </button>
           </div>
         </form>
