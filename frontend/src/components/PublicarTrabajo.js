@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ModalPagoYape from './ModalPagoYape';
 import './PublicarTrabajo.css';
 
@@ -20,6 +20,9 @@ function PublicarTrabajo({ token, onPublicado }) {
   // Nuevos estados para el flujo de pago
   const [mostrarModalPago, setMostrarModalPago] = useState(false);
   const [trabajoCreado, setTrabajoCreado] = useState(null);
+  
+  // ✨ NUEVO: Estado para precio dinámico
+  const [precioPublicacion, setPrecioPublicacion] = useState('10.00');
 
   const categorias = [
     'Construcción',
@@ -34,6 +37,29 @@ function PublicarTrabajo({ token, onPublicado }) {
     'Otros'
   ];
 
+  // ✨ NUEVO: Cargar precio de publicación al iniciar
+  useEffect(() => {
+    const cargarPrecio = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/payments/configuracion`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setPrecioPublicacion(data.precio_publicacion);
+        }
+      } catch (err) {
+        console.log('Error al cargar precio:', err);
+        // Mantener valor por defecto
+      }
+    };
+    
+    cargarPrecio();
+  }, [token]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -44,54 +70,54 @@ function PublicarTrabajo({ token, onPublicado }) {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setCargando(true);
-  setError('');
-  setExito(false);
+    e.preventDefault();
+    setCargando(true);
+    setError('');
+    setExito(false);
 
-  try {
-    const response = await fetch(`${API_URL}/api/jobs`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(formData)
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || 'Error al crear trabajo');
-    }
-
-    // ✨ NUEVO: Verificar si el usuario es admin
-    if (data.esAdmin) {
-      // Admin: Publicado directamente
-      setExito(true);
-      setFormData({
-        titulo: '',
-        descripcion: '',
-        categoria: '',
-        pago_estimado: '',
-        ubicacion: '',
-        contacto: ''
+    try {
+      const response = await fetch(`${API_URL}/api/jobs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(formData)
       });
 
-      setTimeout(() => {
-        onPublicado();
-      }, 2000);
-    } else {
-      // Empleador: Mostrar modal de pago
-      setTrabajoCreado(data.id);
-      setMostrarModalPago(true);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al crear trabajo');
+      }
+
+      // ✨ NUEVO: Verificar si el usuario es admin
+      if (data.esAdmin) {
+        // Admin: Publicado directamente
+        setExito(true);
+        setFormData({
+          titulo: '',
+          descripcion: '',
+          categoria: '',
+          pago_estimado: '',
+          ubicacion: '',
+          contacto: ''
+        });
+
+        setTimeout(() => {
+          onPublicado();
+        }, 2000);
+      } else {
+        // Empleador: Mostrar modal de pago
+        setTrabajoCreado(data.id);
+        setMostrarModalPago(true);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setCargando(false);
     }
-  } catch (err) {
-    setError(err.message);
-  } finally {
-    setCargando(false);
-  }
-};
+  };
 
   const handlePagoConfirmado = () => {
     setMostrarModalPago(false);
@@ -122,11 +148,12 @@ function PublicarTrabajo({ token, onPublicado }) {
         <p className="subtitulo">Completa los detalles del trabajo que necesitas</p>
 
         {error && <div className="error-message">{error}</div>}
-     {exito && (
-  <div className="success-message">
-    ✓ Trabajo publicado exitosamente. Redirigiendo...
-  </div>
-)}
+        {exito && (
+          <div className="success-message">
+            ✓ Trabajo publicado exitosamente. Redirigiendo...
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit} className="publicar-form">
           <div className="form-group">
             <label htmlFor="titulo">Título del trabajo *</label>
@@ -218,11 +245,11 @@ function PublicarTrabajo({ token, onPublicado }) {
             <small>Tu teléfono registrado se mostrará automáticamente</small>
           </div>
 
-          {/* NUEVO: Aviso de pago */}
+          {/* ✨ CORREGIDO: Precio dinámico */}
           <div className="aviso-pago">
             <div className="icono-info">ℹ️</div>
             <div className="texto-aviso">
-              <strong>Costo de publicación: S/ 10.00</strong>
+              <strong>Costo de publicación: S/ {precioPublicacion}</strong>
               <p>Después de completar el formulario, procederás a realizar el pago mediante Yape para activar tu publicación.</p>
             </div>
           </div>
