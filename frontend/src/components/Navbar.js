@@ -27,7 +27,8 @@ function Navbar({ usuario, onCambiarVista, onLogout }) {
         <div className="navbar-container">
          <div className="navbar-logo" onClick={() => handleNavClick('lista')}>
   <img 
-    src="/images/logo-chambeador.png" 
+      src={`${process.env.PUBLIC_URL}/images/logo-chambeador.png`}
+
     alt="El Chambeador" 
     className="logo-imagen"
     height="40"

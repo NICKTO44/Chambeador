@@ -185,7 +185,8 @@ function ListaTrabajos({ onCambiarVista }) {
         {/* Logo profesional grande */}
         <div className="hero-logo-container">
           <img 
-            src="/images/logo-chambeador.png" 
+              src={`${process.env.PUBLIC_URL}/images/logo-chambeador.png`}
+
             alt="El Chambeador - Portal de Oportunidades Laborales en Perú" 
             className="hero-logo"
           />
