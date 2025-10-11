@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TarjetaTrabajo from './TarjetaTrabajo';
 import BannerContacto from './BannerContacto';
 import BuscadorInteligente from './BuscadorInteligente';
+import SEO from './SEO';
 import './ListaTrabajos.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -15,7 +16,7 @@ function ListaTrabajos({ onCambiarVista }) {
   const [totalResultados, setTotalResultados] = useState(0);
   const [categoriaFiltro, setCategoriaFiltro] = useState('');
   const [busqueda, setBusqueda] = useState('');
-  const [busquedaTemporal, setBusquedaTemporal] = useState(''); // ✨ NUEVO
+  const [busquedaTemporal, setBusquedaTemporal] = useState('');
 
   const categorias = [
     'Construcción',
@@ -30,17 +31,17 @@ function ListaTrabajos({ onCambiarVista }) {
     'Otros'
   ];
 
-  // ✨ NUEVO: Debounce para búsqueda en tiempo real (200ms)
+  // Debounce para búsqueda en tiempo real (200ms)
   useEffect(() => {
     const timer = setTimeout(() => {
       if (busquedaTemporal !== busqueda) {
         setBusqueda(busquedaTemporal);
         setPaginaActual(1);
       }
-    }, 200); // Reducido de 500ms a 200ms para mayor rapidez
+    }, 200);
 
     return () => clearTimeout(timer);
-  }, [busquedaTemporal]);
+  }, [busquedaTemporal, busqueda]);
 
   // Cargar trabajos cuando cambian los filtros
   useEffect(() => {
@@ -99,7 +100,6 @@ function ListaTrabajos({ onCambiarVista }) {
     }
   };
 
-  // ✨ MODIFICADO: Ahora actualiza busquedaTemporal para búsqueda en tiempo real
   const handleBuscar = (terminoBusqueda) => {
     setBusquedaTemporal(terminoBusqueda);
   };
@@ -112,7 +112,7 @@ function ListaTrabajos({ onCambiarVista }) {
   const handleLimpiarFiltros = () => {
     setCategoriaFiltro('');
     setBusqueda('');
-    setBusquedaTemporal(''); // ✨ NUEVO
+    setBusquedaTemporal('');
     setPaginaActual(1);
   };
 
@@ -148,20 +148,61 @@ function ListaTrabajos({ onCambiarVista }) {
     );
   };
 
+  // SEO dinámico según filtros
+  const getSEOTitle = () => {
+    if (categoriaFiltro) {
+      return `Trabajos de ${categoriaFiltro} en Perú - El Chambeador`;
+    }
+    if (busqueda) {
+      return `Resultados para "${busqueda}" - El Chambeador`;
+    }
+    return "Encuentra Trabajo en Perú - El Chambeador";
+  };
+
+  const getSEODescription = () => {
+    if (categoriaFiltro) {
+      return `Encuentra las mejores oportunidades laborales de ${categoriaFiltro} en Perú. ${totalResultados} empleos disponibles actualizados diariamente.`;
+    }
+    if (busqueda) {
+      return `${totalResultados} resultados encontrados para "${busqueda}". Encuentra tu próxima oportunidad laboral en El Chambeador.`;
+    }
+    return "Miles de oportunidades laborales en Perú. Encuentra trabajo en construcción, limpieza, tecnología, gastronomía y más. Actualizado diariamente.";
+  };
+
   return (
     <div className="lista-trabajos-container">
+      {/* SEO Component */}
+      <SEO 
+        title={getSEOTitle()}
+        description={getSEODescription()}
+        keywords={`trabajo peru, empleo ${categoriaFiltro || 'cusco'}, oportunidades laborales, buscar trabajo peru, chambeador`}
+      />
+
       <BannerContacto />
 
+      {/* HERO SECTION CON LOGO PROFESIONAL */}
       <div className="hero-section">
-        <h1>Encuentra tu próxima oportunidad</h1>
-        <p>Conectamos trabajadores con empleadores en todo el país</p>
+        {/* Logo profesional grande */}
+        <div className="hero-logo-container">
+          <img 
+            src="/images/logo-chambeador.png" 
+            alt="El Chambeador - Portal de Oportunidades Laborales en Perú" 
+            className="hero-logo"
+          />
+        </div>
+        
+        {/* Contenido del hero */}
+        <div className="hero-content">
+          <h1>Encuentra tu próxima oportunidad</h1>
+          <p>Conectamos trabajadores con empleadores en todo el país</p>
+        </div>
       </div>
 
       {/* Buscador Inteligente */}
       <div className="buscador-section">
         <BuscadorInteligente 
           onBuscar={handleBuscar}
-          busquedaActual={busquedaTemporal} // ✨ MODIFICADO: usa busquedaTemporal
+          busquedaActual={busquedaTemporal}
         />
       </div>
 
@@ -174,6 +215,7 @@ function ListaTrabajos({ onCambiarVista }) {
               key={cat}
               className={`filtro-btn ${categoriaFiltro === cat ? 'activo' : ''}`}
               onClick={() => handleFiltroCategoria(cat)}
+              aria-label={`Filtrar por ${cat}`}
             >
               {cat}
             </button>
@@ -244,6 +286,7 @@ function ListaTrabajos({ onCambiarVista }) {
                 className="btn-paginacion"
                 onClick={handlePaginaAnterior}
                 disabled={paginaActual === 1}
+                aria-label="Página anterior"
               >
                 ← Anterior
               </button>
@@ -254,6 +297,7 @@ function ListaTrabajos({ onCambiarVista }) {
                 className="btn-paginacion"
                 onClick={handlePaginaSiguiente}
                 disabled={paginaActual === totalPaginas}
+                aria-label="Página siguiente"
               >
                 Siguiente →
               </button>

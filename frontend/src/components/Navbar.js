@@ -25,11 +25,15 @@ function Navbar({ usuario, onCambiarVista, onLogout }) {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <div className="navbar-logo" onClick={() => handleNavClick('lista')}>
-            <span className="logo-icon">💼</span>
-            <span className="logo-text">El Chambeador</span>
-          </div>
-
+         <div className="navbar-logo" onClick={() => handleNavClick('lista')}>
+  <img 
+    src="/images/logo-chambeador.png" 
+    alt="El Chambeador" 
+    className="logo-imagen"
+    height="40"
+  />
+  <span className="logo-text">El Chambeador</span>
+</div>
           {/* Botón hamburguesa (solo visible en móvil) */}
           <button 
             className={`navbar-hamburger ${menuAbierto ? 'active' : ''}`}

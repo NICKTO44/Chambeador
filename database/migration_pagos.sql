@@ -198,3 +198,12 @@ AFTER contacto;
 
 -- Verificar que se agregó correctamente
 DESCRIBE trabajos;
+
+-- 2. Actualizar precio de publicacion a S/ 15
+UPDATE configuracion 
+SET valor = '15.00' 
+WHERE clave = 'precio_publicacion';
+
+UPDATE configuracion 
+SET valor = '15.00' 
+WHERE clave = 'precio_renovacion';

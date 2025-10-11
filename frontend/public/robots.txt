@@ -1,0 +1,11 @@
+# Robots.txt para El Chambeador
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://elchambeador.info/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

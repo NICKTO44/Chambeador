@@ -1,0 +1,19 @@
+{
+  "short_name": "El Chambeador",
+  "name": "El Chambeador - Portal de Oportunidades Laborales",
+  "description": "Encuentra trabajo en Perú con El Chambeador",
+  "icons": [
+    {
+      "src": "images/logo-chambeador.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#D4A017",
+  "background_color": "#2c2c2c",
+  "categories": ["business", "employment"],
+  "lang": "es",
+  "scope": "/"
+}

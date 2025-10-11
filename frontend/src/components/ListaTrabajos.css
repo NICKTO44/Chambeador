@@ -639,3 +639,233 @@ html {
 .paginacion {
   transition: all 0.3s ease;
 }
+/* ========================================
+   HERO SECTION - OPTIMIZADO Y COMPACTO
+   ======================================== */
+
+.hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 40px 30px; /* Reducido de 60px a 40px */
+  margin-bottom: 30px; /* Reducido de 40px a 30px */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px; /* Reducido de 40px a 30px */
+  min-height: 200px; /* Reducido de 280px a 200px */
+}
+
+/* Patrón de fondo sutil */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(212, 160, 23, 0.03) 35px,
+      rgba(212, 160, 23, 0.03) 70px
+    );
+  pointer-events: none;
+}
+
+/* Logo optimizado */
+.hero-logo-container {
+  flex-shrink: 0;
+  z-index: 5;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.hero-logo {
+  width: 220px; /* Reducido de 320px a 220px */
+  height: auto;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4)); /* Sombra reducida */
+  transition: transform 0.4s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Contenido del hero optimizado */
+.hero-content {
+  flex: 1;
+  text-align: left;
+  z-index: 10;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.hero-section h1 {
+  color: #D4A017;
+  font-size: 38px; /* Reducido de 48px a 38px */
+  font-weight: 800;
+  margin: 0 0 10px 0; /* Reducido de 16px a 10px */
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+}
+
+.hero-section p {
+  color: #e0e0e0;
+  font-size: 17px; /* Reducido de 20px a 17px */
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Animaciones */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN OPTIMIZADO
+   ======================================== */
+
+@media (max-width: 1200px) {
+  .hero-logo {
+    width: 200px;
+  }
+  
+  .hero-section h1 {
+    font-size: 34px;
+  }
+  
+  .hero-section p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: 35px 25px;
+    gap: 25px;
+    min-height: 180px;
+  }
+  
+  .hero-logo {
+    width: 180px;
+  }
+  
+  .hero-section h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    min-height: auto;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-logo {
+    width: 160px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-section h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  .hero-section p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 25px 15px;
+  }
+  
+  .hero-logo {
+    width: 130px;
+  }
+  
+  .hero-section h1 {
+    font-size: 24px;
+  }
+  
+  .hero-section p {
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   OPTIMIZACIÓN DE ESPACIOS GLOBALES
+   ======================================== */
+
+.lista-trabajos-container {
+  padding: 100px 20px 40px; /* Ajustar padding superior */
+}
+
+/* Buscador más compacto */
+.buscador-section {
+  margin-bottom: 25px; /* Reducir espacio */
+}
+
+/* Filtros más compactos */
+.filtros-section {
+  margin-bottom: 25px; /* Reducir espacio */
+  padding: 20px; /* Reducir padding */
+}
+
+.filtros-section h3 {
+  font-size: 18px; /* Reducir tamaño */
+  margin-bottom: 12px; /* Reducir espacio */
+}
+
+/* Grid de trabajos más compacto */
+.trabajos-grid {
+  gap: 20px; /* Reducir espacio entre tarjetas */
+  margin-top: 20px;
+}
+
+/* Reducción agresiva del espacio superior */
+.lista-trabajos-container {
+  padding: 70px 20px 40px; /* Aún más reducido */
+}
+
+/* Eliminar cualquier margin del primer elemento */
+.lista-trabajos-container > *:first-child {
+  margin-top: 0 !important;
+}
+
+/* Si el BannerContacto tiene margin */
+.banner-contacto {
+  margin-top: 0;
+  margin-bottom: 15px; /* Reducir espacio con el hero */
+}

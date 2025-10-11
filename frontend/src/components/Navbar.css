@@ -39,6 +39,35 @@
   font-size: 28px;
 }
 
+/* Logo imagen */
+.logo-imagen {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-imagen:hover {
+  transform: scale(1.1);
+}
+
+/* Si usas logo completo sin texto */
+.logo-imagen-completo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Ajuste para responsive */
+@media (max-width: 768px) {
+  .logo-imagen {
+    height: 35px;
+  }
+  
+  .logo-imagen-completo {
+    height: 40px;
+  }
+}
 .logo-text {
   color: #D4A017;
   font-size: 24px;
