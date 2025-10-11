@@ -4,7 +4,7 @@
   "description": "Encuentra trabajo en Perú con El Chambeador",
   "icons": [
     {
-      "src": "images/logo-chambeador.png",
+      "src": "logo-chambeador.png",
       "type": "image/png",
       "sizes": "512x512"
     }
