@@ -5,6 +5,22 @@
   "framework": "create-react-app",
   "routes": [
     {
+      "src": "/logo-chambeador.png",
+      "dest": "/logo-chambeador.png"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
       "src": "/static/(.*)",
       "dest": "/static/$1"
     },
