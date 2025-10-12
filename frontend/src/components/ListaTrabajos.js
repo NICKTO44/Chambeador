@@ -148,35 +148,34 @@ function ListaTrabajos({ onCambiarVista }) {
     );
   };
 
-  // SEO dinámico según filtros
-  const getSEOTitle = () => {
-    if (categoriaFiltro) {
-      return `Trabajos de ${categoriaFiltro} en Perú - El Chambeador`;
-    }
-    if (busqueda) {
-      return `Resultados para "${busqueda}" - El Chambeador`;
-    }
-    return "Encuentra Trabajo en Perú - El Chambeador";
-  };
+ // SEO dinámico según filtros - VERSIÓN OPTIMIZADA
+const getSEOTitle = () => {
+  if (categoriaFiltro) {
+    return `Ofertas de Trabajo de ${categoriaFiltro} en Perú - El Chambeador`;
+  }
+  if (busqueda) {
+    return `Ofertas de "${busqueda}" - Bolsa de Trabajo El Chambeador`;
+  }
+  return "Ofertas de Trabajo y Empleo en Perú - El Chambeador | Bolsa de Trabajo Gratis";
+};
 
-  const getSEODescription = () => {
-    if (categoriaFiltro) {
-      return `Encuentra las mejores oportunidades laborales de ${categoriaFiltro} en Perú. ${totalResultados} empleos disponibles actualizados diariamente.`;
-    }
-    if (busqueda) {
-      return `${totalResultados} resultados encontrados para "${busqueda}". Encuentra tu próxima oportunidad laboral en El Chambeador.`;
-    }
-    return "Miles de oportunidades laborales en Perú. Encuentra trabajo en construcción, limpieza, tecnología, gastronomía y más. Actualizado diariamente.";
-  };
-
+const getSEODescription = () => {
+  if (categoriaFiltro) {
+    return `${totalResultados} ofertas de trabajo de ${categoriaFiltro} disponibles en Perú. Encuentra empleo en ${categoriaFiltro} actualizado diariamente. Bolsa de trabajo gratis en El Chambeador.`;
+  }
+  if (busqueda) {
+    return `${totalResultados} ofertas de trabajo encontradas para "${busqueda}". Encuentra tu próximo empleo en El Chambeador - Portal de trabajo y bolsa de empleo en Perú.`;
+  }
+  return "Miles de ofertas de trabajo y empleo en Perú. Bolsa de trabajo gratis con oportunidades en construcción, gastronomía, tecnología, limpieza, transporte, salud, educación, comercio y más. Actualizado diariamente. ¡Encuentra tu próxima chamba!";
+};
   return (
     <div className="lista-trabajos-container">
       {/* SEO Component */}
-      <SEO 
-        title={getSEOTitle()}
-        description={getSEODescription()}
-        keywords={`trabajo peru, empleo ${categoriaFiltro || 'cusco'}, oportunidades laborales, buscar trabajo peru, chambeador`}
-      />
+    <SEO 
+  title={getSEOTitle()}
+  description={getSEODescription()}
+  keywords={`ofertas de trabajo, ofertas de empleo, bolsa de trabajo, buscar trabajo, empleo ${categoriaFiltro || 'peru'}, trabajo ${categoriaFiltro || 'peru'}, chambeador, portal de empleo, oportunidades laborales, vacantes`}
+/>
 
       <BannerContacto />
 
