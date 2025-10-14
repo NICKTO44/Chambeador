@@ -5,7 +5,7 @@ Disallow: /admin
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://elchambeador.info/sitemap.xml
+Sitemap: https://www.elchambeador.info/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
