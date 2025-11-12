@@ -10,7 +10,7 @@ import BannerContacto from './components/BannerContacto';
 import BotonWhatsAppFlotante from './components/BotonWhatsAppFlotante';
 import './App.css';
 
-// Configuración de tiempo de expiración de sesión (24 horas)
+// Configuración de tiempo de expiración de sesión (24 horass)
 const TIEMPO_EXPIRACION_SESION = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
 
 function App() {
