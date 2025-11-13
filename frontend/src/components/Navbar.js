@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
-function Navbar({ usuario, onCambiarVista, onLogout }) {
+function Navbar() {
+  const navigate = useNavigate();
+  const { usuario, logout } = useAuth();
   const [menuAbierto, setMenuAbierto] = useState(false);
 
-  // Toggle del menú
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
   };
 
-  // Cerrar menú al hacer click en un link
-  const handleNavClick = (vista) => {
-    onCambiarVista(vista);
+  const handleNavegar = (ruta) => {
     setMenuAbierto(false);
+    navigate(ruta);
   };
 
-  // Cerrar menú al hacer logout
   const handleLogout = () => {
-    onLogout();
     setMenuAbierto(false);
+    logout();
+    navigate('/trabajos');
   };
 
   return (
     <>
       <nav className="navbar">
         <div className="navbar-container">
-         <div className="navbar-logo" onClick={() => handleNavClick('lista')}>
-  <img 
-      src={`${process.env.PUBLIC_URL}/logo-chambeador.png`}
+          <div className="navbar-logo" onClick={() => handleNavegar('/trabajos')}>
+            <img 
+              src={`${process.env.PUBLIC_URL}/logo-chambeador.png`}
+              alt="El Chambeador" 
+              className="logo-imagen"
+              height="40"
+            />
+            <span className="logo-text">El Chambeador</span>
+          </div>
 
-    alt="El Chambeador" 
-    className="logo-imagen"
-    height="40"
-  />
-  <span className="logo-text">El Chambeador</span>
-</div>
-          {/* Botón hamburguesa (solo visible en móvil) */}
           <button 
             className={`navbar-hamburger ${menuAbierto ? 'active' : ''}`}
             onClick={toggleMenu}
@@ -46,47 +47,48 @@ function Navbar({ usuario, onCambiarVista, onLogout }) {
             <span className="hamburger-line"></span>
           </button>
 
-          {/* Menú principal */}
           <div className={`navbar-menu ${menuAbierto ? 'active' : ''}`}>
-            <button className="nav-link" onClick={() => handleNavClick('lista')}>
+            <button className="nav-link" onClick={() => handleNavegar('/trabajos')}>
               Ver Trabajos
             </button>
 
             {usuario ? (
               <>
-                {/* Botones para EMPLEADOR */}
                 {usuario.rol === 'empleador' && (
                   <>
-                    <button className="nav-link" onClick={() => handleNavClick('publicar')}>
+                    <button className="nav-link" onClick={() => handleNavegar('/publicar-trabajo')}>
                       Publicar Trabajo
                     </button>
-                    <button className="nav-link" onClick={() => handleNavClick('mis-publicaciones')}>
+                    <button className="nav-link" onClick={() => handleNavegar('/mis-publicaciones')}>
                       Mis Publicaciones
                     </button>
                   </>
                 )}
 
-                {/* Botón para ADMIN */}
                 {usuario.rol === 'admin' && (
-                  <button className="nav-link nav-admin" onClick={() => handleNavClick('admin')}>
+                  <button className="nav-link nav-admin" onClick={() => handleNavegar('/admin')}>
                     ⚙️ Panel Admin
                   </button>
                 )}
 
-                <div className="user-info">
-                  <span className="user-name">{usuario.nombre}</span>
-                  <span className={`user-badge badge-${usuario.rol}`}>{usuario.rol}</span>
-                </div>
-                <button className="btn-logout" onClick={handleLogout}>
+                {/* MI PERFIL */}
+                {usuario.rol !== 'admin' && (
+                  <button className="nav-link nav-perfil" onClick={() => handleNavegar('/perfil')}>
+                    👤 Mi Perfil
+                  </button>
+                )}
+
+                {/* CERRAR SESIÓN */}
+                <button className="btn-logout-navbar" onClick={handleLogout}>
                   Cerrar Sesión
                 </button>
               </>
             ) : (
               <>
-                <button className="nav-link" onClick={() => handleNavClick('login')}>
+                <button className="nav-link" onClick={() => handleNavegar('/login')}>
                   Iniciar Sesión
                 </button>
-                <button className="nav-link" onClick={() => handleNavClick('registro')}>
+                <button className="nav-link btn-registro-destacado" onClick={() => handleNavegar('/registro')}>
                   Registrarse
                 </button>
               </>
@@ -95,7 +97,6 @@ function Navbar({ usuario, onCambiarVista, onLogout }) {
         </div>
       </nav>
 
-      {/* Overlay para cerrar menú al hacer click fuera (solo móvil) */}
       {menuAbierto && (
         <div 
           className="navbar-overlay active" 

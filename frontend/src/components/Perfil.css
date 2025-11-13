@@ -1,0 +1,757 @@
+/* ========================================
+   PERFIL - COMPLETAMENTE RESPONSIVE
+   ======================================== */
+
+.perfil-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  padding-top: 100px;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.perfil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.perfil-header h1 {
+  color: #2c2c2c;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.badge-rol {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-trabajador {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.badge-empleador {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+/* ========================================
+   INDICADOR DE PERFIL COMPLETO
+   ======================================== */
+.perfil-completitud {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  animation: slideInDown 0.4s ease;
+}
+
+.perfil-completitud.completo {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border: 2px solid #28a745;
+}
+
+.perfil-completitud.incompleto {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border: 2px solid #ff9800;
+}
+
+.icono-completitud {
+  font-size: 32px;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.texto-completitud strong {
+  display: block;
+  color: #2c2c2c;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.texto-completitud p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   SECCIONES
+   ======================================== */
+.perfil-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.perfil-section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.perfil-section h2 {
+  color: #2c2c2c;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.btn-editar {
+  background-color: transparent;
+  color: #D4A017;
+  border: 2px solid #D4A017;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-editar:hover {
+  background-color: #D4A017;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-cancelar-mini {
+  background-color: transparent;
+  color: #666;
+  border: 2px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar-mini:hover {
+  border-color: #999;
+  color: #333;
+}
+
+/* ========================================
+   FOTO DE PERFIL
+   ======================================== */
+.foto-perfil-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.foto-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #e0e0e0;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.foto-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.foto-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 64px;
+  font-weight: 700;
+}
+
+.foto-acciones {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 250px;
+}
+
+.foto-acciones small {
+  color: #999;
+  font-size: 13px;
+}
+
+/* ========================================
+   VISTA DE DATOS (NO EDITANDO)
+   ======================================== */
+.perfil-vista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dato-perfil {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dato-perfil:last-child {
+  border-bottom: none;
+}
+
+.dato-perfil strong {
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dato-perfil span,
+.dato-perfil p {
+  color: #2c2c2c;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dato-perfil a {
+  color: #2196F3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.dato-perfil a:hover {
+  color: #1976D2;
+  text-decoration: underline;
+}
+
+.dato-perfil.dato-completo {
+  grid-template-columns: 1fr;
+}
+
+.dato-perfil.dato-completo strong {
+  margin-bottom: 8px;
+}
+
+/* ========================================
+   FORMULARIO DE EDICIÓN
+   ======================================== */
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.perfil-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perfil-form label {
+  color: #2c2c2c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.perfil-form input,
+.perfil-form select,
+.perfil-form textarea {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.perfil-form input:focus,
+.perfil-form select:focus,
+.perfil-form textarea:focus {
+  outline: none;
+  border-color: #D4A017;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.perfil-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.perfil-form small {
+  color: #999;
+  font-size: 13px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 10px;
+}
+
+/* ========================================
+   CV
+   ======================================== */
+.cv-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cv-actual {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cv-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex: 1;
+}
+
+.icono-pdf {
+  font-size: 40px;
+}
+
+.cv-info strong {
+  display: block;
+  color: #2c2c2c;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.cv-info small {
+  color: #999;
+  font-size: 13px;
+}
+
+.btn-descargar {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-descargar:hover {
+  background-color: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.sin-cv {
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.cv-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.archivo-seleccionado {
+  color: #28a745;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ========================================
+   BOTONES GLOBALES
+   ======================================== */
+.btn-primary {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #D4A017;
+  border: 2px solid #D4A017;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #D4A017;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  color: #666;
+  border: 2px solid #e0e0e0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  border-color: #999;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET (768px - 1023px)
+   ======================================== */
+@media (max-width: 1023px) {
+  .perfil-container {
+    padding: 30px 20px;
+    padding-top: 90px;
+  }
+
+  .perfil-header h1 {
+    font-size: 28px;
+  }
+
+  .perfil-section {
+    padding: 25px 20px;
+  }
+
+  .perfil-section h2 {
+    font-size: 20px;
+  }
+
+  .dato-perfil {
+    grid-template-columns: 150px 1fr;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE (hasta 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  .perfil-container {
+    padding: 20px 15px;
+    padding-top: 80px;
+  }
+
+  .perfil-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .perfil-header h1 {
+    font-size: 26px;
+  }
+
+  .badge-rol {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  /* Completitud */
+  .perfil-completitud {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .icono-completitud {
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+
+  .texto-completitud strong {
+    font-size: 15px;
+  }
+
+  .texto-completitud p {
+    font-size: 13px;
+  }
+
+  /* Secciones */
+  .perfil-section {
+    padding: 20px 16px;
+  }
+
+  .perfil-section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Foto */
+  .foto-perfil-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .foto-preview {
+    width: 120px;
+    height: 120px;
+  }
+
+  .foto-placeholder {
+    font-size: 52px;
+  }
+
+  .foto-acciones {
+    width: 100%;
+  }
+
+  /* Datos */
+  .dato-perfil {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .dato-perfil strong {
+    font-size: 13px;
+  }
+
+  .dato-perfil span,
+  .dato-perfil p {
+    font-size: 14px;
+  }
+
+  /* Formulario */
+  .perfil-form input,
+  .perfil-form select,
+  .perfil-form textarea {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .perfil-form label {
+    font-size: 13px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  /* CV */
+  .cv-actual {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .cv-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn-descargar {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Botones */
+  .btn-primary,
+  .btn-secondary,
+  .btn-cancelar {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .btn-editar,
+  .btn-cancelar-mini {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO (hasta 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  .perfil-container {
+    padding: 15px 12px;
+    padding-top: 75px;
+  }
+
+  .perfil-header h1 {
+    font-size: 24px;
+  }
+
+  .perfil-section {
+    padding: 18px 14px;
+  }
+
+  .perfil-section h2 {
+    font-size: 17px;
+  }
+
+  .foto-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+  .foto-placeholder {
+    font-size: 44px;
+  }
+
+  .perfil-completitud {
+    padding: 14px;
+  }
+
+  .icono-completitud {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+.perfil-form input:focus-visible,
+.perfil-form select:focus-visible,
+.perfil-form textarea:focus-visible {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

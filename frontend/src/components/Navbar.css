@@ -21,7 +21,9 @@
   align-items: center;
 }
 
-/* Logo */
+/* ========================================
+   LOGO
+   ======================================== */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -35,11 +37,6 @@
   transform: scale(1.05);
 }
 
-.logo-icon {
-  font-size: 28px;
-}
-
-/* Logo imagen */
 .logo-imagen {
   height: 40px;
   width: auto;
@@ -51,23 +48,6 @@
   transform: scale(1.1);
 }
 
-/* Si usas logo completo sin texto */
-.logo-imagen-completo {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* Ajuste para responsive */
-@media (max-width: 768px) {
-  .logo-imagen {
-    height: 35px;
-  }
-  
-  .logo-imagen-completo {
-    height: 40px;
-  }
-}
 .logo-text {
   color: #D4A017;
   font-size: 24px;
@@ -75,7 +55,9 @@
   letter-spacing: -0.5px;
 }
 
-/* Menu hamburguesa (solo visible en móvil) */
+/* ========================================
+   MENU HAMBURGUESA
+   ======================================== */
 .navbar-hamburger {
   display: none;
   flex-direction: column;
@@ -107,7 +89,9 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Menu principal */
+/* ========================================
+   MENU PRINCIPAL
+   ======================================== */
 .navbar-menu {
   display: flex;
   align-items: center;
@@ -132,59 +116,22 @@
   color: #D4A017;
 }
 
-/* Usuario info */
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 15px;
-  border-left: 2px solid #444;
-  border-right: 2px solid #444;
-}
-
-.user-name {
-  color: white;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-/* Badges de rol */
-.user-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
+/* ========================================
+   BOTÓN MI PERFIL
+   ======================================== */
+.nav-perfil {
+  color: #D4A017 !important;
   font-weight: 600;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
 }
 
-.badge-empleador {
-  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
-  color: white;
+.nav-perfil:hover {
+  background: rgba(212, 160, 23, 0.15) !important;
+  color: #B8860B !important;
 }
 
-.badge-trabajador {
-  background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-  color: white;
-}
-
-.badge-admin {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-  color: white;
-  animation: pulseAdmin 2s ease-in-out infinite;
-}
-
-@keyframes pulseAdmin {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
-  }
-}
-
-/* Botón Panel Admin */
+/* ========================================
+   PANEL ADMIN
+   ======================================== */
 .nav-admin {
   background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
   color: white !important;
@@ -200,23 +147,66 @@
   box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
-/* Botón Logout */
-.btn-logout {
-  background-color: transparent;
-  color: #ff6b6b;
-  border: 2px solid #ff6b6b;
+
+/* ========================================
+   BOTÓN CERRAR SESIÓN
+   ======================================== */
+.btn-logout-navbar {
+  background: rgba(244, 67, 54, 0.15);
+  color: white;
+  border: 2px solid rgba(244, 67, 54, 0.4);
   padding: 8px 20px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-left: 15px;
   white-space: nowrap;
 }
 
-.btn-logout:hover {
-  background-color: #ff6b6b;
-  color: white;
+.btn-logout-navbar:hover {
+  background: rgba(244, 67, 54, 0.9);
+  border-color: #F44336;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+/* ========================================
+   BOTÓN REGISTRO
+   ======================================== */
+.btn-registro-destacado {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white !important;
+  border-radius: 8px;
+  padding: 10px 20px !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+  border: none;
+}
+
+.btn-registro-destacado:hover {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 160, 23, 0.4);
+}
+
+/* ========================================
+   OVERLAY
+   ======================================== */
+.navbar-overlay {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.navbar-overlay.active {
+  display: block;
 }
 
 /* ========================================
@@ -236,13 +226,8 @@
     padding: 7px 14px;
   }
 
-  .user-name {
-    font-size: 14px;
-  }
-
-  .user-badge {
-    font-size: 12px;
-    padding: 3px 10px;
+  .logo-text {
+    font-size: 22px;
   }
 }
 
@@ -254,21 +239,18 @@
     padding: 12px 15px;
   }
 
-  /* Mostrar hamburguesa */
   .navbar-hamburger {
     display: flex;
   }
 
-  /* Logo más pequeño */
   .logo-text {
     font-size: 20px;
   }
 
-  .logo-icon {
-    font-size: 24px;
+  .logo-imagen {
+    height: 35px;
   }
 
-  /* Menu móvil - inicialmente oculto */
   .navbar-menu {
     position: fixed;
     top: 60px;
@@ -286,14 +268,12 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   }
 
-  /* Menu abierto */
   .navbar-menu.active {
     max-height: calc(100vh - 60px);
     opacity: 1;
     overflow-y: auto;
   }
 
-  /* Links en móvil */
   .nav-link {
     width: 100%;
     text-align: left;
@@ -302,44 +282,50 @@
     border-bottom: 1px solid #444;
   }
 
-  .nav-link:last-child {
+  .nav-link:last-of-type {
     border-bottom: none;
   }
 
-  /* Usuario info en móvil */
-  .user-info {
+  .user-info-simple {
+    margin-left: 0;
     width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 14px 20px;
-    border: none;
-    border-top: 2px solid #444;
-    border-bottom: 2px solid #444;
-    margin: 10px 0;
-  }
-
-  .user-name {
-    font-size: 16px;
-  }
-
-  .user-badge {
-    font-size: 12px;
-  }
-
-  /* Botón logout en móvil */
-  .btn-logout {
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 16px;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     margin-top: 10px;
   }
 
-  /* Panel Admin en móvil */
+  .user-name-simple {
+    max-width: none;
+    font-size: 14px;
+  }
+
+  .user-badge-simple {
+    font-size: 11px;
+  }
+
+  .btn-logout-simple {
+    width: 100%;
+    margin-left: 0;
+    padding: 12px 20px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .btn-registro-destacado {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px !important;
+  }
+
   .nav-admin {
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+
+  .nav-perfil {
+    border-bottom: 1px solid #444;
   }
 }
 
@@ -355,37 +341,17 @@
     font-size: 18px;
   }
 
-  .logo-icon {
-    font-size: 22px;
-  }
-
   .nav-link {
     font-size: 15px;
     padding: 12px 16px;
   }
 
-  .user-info {
-    padding: 12px 16px;
+  .user-info-simple {
+    padding: 8px 10px;
   }
 
-  .btn-logout {
-    padding: 12px 16px;
-    font-size: 15px;
+  .btn-logout-simple {
+    padding: 11px 16px;
+    font-size: 13px;
   }
-}
-
-/* Overlay para cerrar menu al hacer click fuera */
-.navbar-overlay {
-  display: none;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.navbar-overlay.active {
-  display: block;
 }
