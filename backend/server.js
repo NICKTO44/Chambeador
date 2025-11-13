@@ -30,7 +30,13 @@ const corsOptions = {
     ];
     
     // Permitir requests sin origin (mobile apps, postman)
-    if (!origin || allowedOrigins.includes(origin)) {
+       if (!origin) {
+      console.log('✅ Request sin origin - permitido');
+      callback(null, true);
+      return;
+    }
+    
+    if (allowedOrigins.includes(origin)) {
       console.log('✅ Origin permitido:', origin);
       callback(null, true);
     } else {
