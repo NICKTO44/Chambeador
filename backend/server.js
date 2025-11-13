@@ -17,21 +17,37 @@ const PORT = process.env.PORT || 5000;
 
 // ==================== MIDDLEWARE ====================
 
-// ✅ CORS seguro - solo dominios permitidos
+// ✅ CORS seguro - múltiples dominios permitidos
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL || 'https://tudominio.com'
-    : 'http://localhost:3000',
+  origin: function (origin, callback) {
+    console.log('🔍 Request desde origin:', origin);
+    
+    const allowedOrigins = [
+      'https://elchambeador.info',
+      'https://www.elchambeador.info',
+      'http://localhost:3000',
+      'http://localhost:3001'
+    ];
+    
+    // Permitir requests sin origin (mobile apps, postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      console.log('✅ Origin permitido:', origin);
+      callback(null, true);
+    } else {
+      console.log('❌ CORS bloqueado para origen:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
 
 app.use(express.json());
 
 // ✨ NUEVO: Servir archivos estáticos (uploads)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // ==================== RUTAS ====================
 
 // Ruta de bienvenida - sin exponer información sensible
