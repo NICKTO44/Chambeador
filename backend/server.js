@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 // Importar configuración y rutas
@@ -8,6 +9,7 @@ const authRoutes = require('./routes/auth.routes');
 const jobsRoutes = require('./routes/jobs.routes');
 const paymentsRoutes = require('./routes/payments.routes');
 const searchRoutes = require('./routes/search.routes');
+const perfilRoutes = require('./routes/perfil.routes'); // ✨ NUEVO
 
 // Inicializar Express
 const app = express();
@@ -27,6 +29,9 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+// ✨ NUEVO: Servir archivos estáticos (uploads)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // ==================== RUTAS ====================
 
 // Ruta de bienvenida - sin exponer información sensible
@@ -45,6 +50,9 @@ app.use('/api/payments', paymentsRoutes);
 
 // Rutas de búsqueda inteligente
 app.use('/api/search', searchRoutes);
+
+// ✨ NUEVO: Rutas de perfil
+app.use('/api/perfil', perfilRoutes);
 
 // Manejo de rutas no encontradas
 app.use((req, res) => {
