@@ -35,3 +35,15 @@ Thumbs.db
 # IMPORTANTE: .env.production NO se ignora
 # Vercel necesita este archivo en el repo
 # ==========================================
+
+# ==========================================
+# ARCHIVOS DE USUARIOS - NO SUBIR A GITHUB
+# ==========================================
+backend/uploads/fotos/*
+backend/uploads/cvs/*
+backend/uploads/experiencias/*
+
+# Mantener las carpetas vacías con .gitkeep
+!backend/uploads/fotos/.gitkeep
+!backend/uploads/cvs/.gitkeep
+!backend/uploads/experiencias/.gitkeep
