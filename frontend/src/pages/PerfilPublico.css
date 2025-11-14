@@ -1,0 +1,766 @@
+/* ========================================
+   PERFIL PÚBLICO - DISEÑO PROFESIONAL 2.0
+   Inspirado en LinkedIn + Behance
+   ======================================== */
+
+.perfil-publico-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  padding-top: 100px;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ========================================
+   BOTÓN VOLVER
+   ======================================== */
+
+.btn-volver-perfil {
+  background: white;
+  border: 2px solid #e0e0e0;
+  color: #2c2c2c;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-volver-perfil:hover {
+  border-color: #D4A017;
+  color: #D4A017;
+  transform: translateX(-5px);
+}
+
+/* ========================================
+   LAYOUT: SIDEBAR + CONTENIDO PRINCIPAL
+   ======================================== */
+
+.perfil-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* ========================================
+   SIDEBAR IZQUIERDO
+   ======================================== */
+
+.perfil-sidebar {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards del sidebar */
+.sidebar-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   CARD DE PERFIL PRINCIPAL
+   ======================================== */
+
+.perfil-card {
+  position: relative;
+}
+
+/* Banner dorado superior */
+.card-banner {
+  height: 80px;
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.4;
+}
+
+/* Foto de perfil en sidebar */
+.foto-perfil-sidebar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: -50px auto 0;
+  position: relative;
+  z-index: 2;
+}
+
+.foto-perfil-sidebar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-placeholder-sidebar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* Información del perfil */
+.perfil-info {
+  padding: 15px 20px 25px;
+  text-align: center;
+}
+
+.nombre-usuario {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+/* Badge de rol compacto */
+.badge-rol {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.badge-rol.trabajador {
+  background: rgba(76, 175, 80, 0.1);
+  color: #388E3C;
+  border: 2px solid rgba(76, 175, 80, 0.3);
+}
+
+.badge-rol.empleador {
+  background: rgba(33, 150, 243, 0.1);
+  color: #1976D2;
+  border: 2px solid rgba(33, 150, 243, 0.3);
+}
+
+/* Biografía corta - Compacta */
+.biografia-corta {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  text-align: left;
+}
+
+/* Detalles del perfil - Compactos */
+.detalles-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.detalle-item {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detalle-link {
+  color: #D4A017;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.detalle-link:hover {
+  color: #B8860B;
+  text-decoration: underline;
+}
+
+/* ========================================
+   CARD DE ESTADÍSTICAS
+   ======================================== */
+
+.stats-card {
+  padding: 20px;
+}
+
+.card-titulo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 15px 0;
+}
+
+.stats-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: #f0f2f5;
+  transform: translateX(3px);
+}
+
+.stat-icono {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-numero {
+  font-size: 20px;
+  font-weight: 700;
+  color: #D4A017;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* ========================================
+   HABILIDADES EN SIDEBAR
+   ======================================== */
+
+.habilidades-card {
+  padding: 20px;
+}
+
+.habilidades-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.habilidad-tag-small {
+  background: #f8f9fa;
+  color: #2c2c2c;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.habilidad-tag-small:hover {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white;
+  border-color: #D4A017;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+
+.perfil-contenido-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards de contenido */
+.contenido-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.contenido-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.seccion-titulo-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #D4A017;
+}
+
+.seccion-icono {
+  font-size: 24px;
+}
+
+/* ========================================
+   TIMELINE (Experiencia y Educación)
+   ======================================== */
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, #D4A017 0%, #B8860B 100%);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-punto {
+  position: absolute;
+  left: -27px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 3px solid #D4A017;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+  z-index: 1;
+}
+
+.timeline-contenido {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 3px solid #D4A017;
+  transition: all 0.3s ease;
+}
+
+.timeline-contenido:hover {
+  background: #f0f2f5;
+  transform: translateX(5px);
+}
+
+.timeline-cargo {
+  font-size: 17px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.timeline-empresa {
+  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.timeline-periodo {
+  color: #999;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.timeline-descripcion {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 10px 0 0 0;
+}
+
+/* ========================================
+   INFORMACIÓN DE EMPRESA
+   ======================================== */
+
+.empresa-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.empresa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.empresa-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #D4A017;
+}
+
+.empresa-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.empresa-valor {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.empresa-descripcion {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #D4A017;
+}
+
+.empresa-descripcion p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ========================================
+   EXPERIENCIAS PUBLICADAS
+   ======================================== */
+
+.experiencias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.exp-card {
+  background: #f8f9fa;
+  padding: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.exp-card:hover {
+  background: white;
+  border-color: #D4A017;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.exp-badge {
+  font-size: 22px;
+}
+
+.exp-badge.badge-negativa {
+  filter: grayscale(20%);
+}
+
+.exp-badge.badge-positiva {
+  filter: hue-rotate(10deg);
+}
+
+.exp-fecha {
+  color: #999;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.exp-titulo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.exp-empresa {
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.exp-footer {
+  display: flex;
+  gap: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.exp-stat {
+  color: #999;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ========================================
+   CONTENIDO VACÍO
+   ======================================== */
+
+.contenido-vacio {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.vacio-icono {
+  font-size: 64px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.contenido-vacio h3 {
+  color: #666;
+  font-size: 20px;
+  margin: 0 0 10px 0;
+}
+
+.contenido-vacio p {
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ========================================
+   ESTADOS (Loading, Error)
+   ======================================== */
+
+.perfil-publico-loading,
+.perfil-publico-error {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.spinner-grande {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #D4A017;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-icono {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.perfil-publico-error h2 {
+  color: #666;
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+.perfil-publico-error p {
+  color: #999;
+  font-size: 15px;
+  margin: 10px 0 20px;
+}
+
+.btn-volver-error {
+  background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-volver-error:hover {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+   ======================================== */
+
+@media (max-width: 1023px) {
+  .perfil-layout {
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+  }
+
+  .perfil-sidebar {
+    top: 80px;
+  }
+
+  .experiencias-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .perfil-publico-page {
+    padding: 20px 12px;
+    padding-top: 80px;
+  }
+
+  .perfil-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .perfil-sidebar {
+    position: static;
+  }
+
+  .card-banner {
+    height: 60px;
+  }
+
+  .foto-perfil-sidebar {
+    width: 80px;
+    height: 80px;
+    margin: -40px auto 0;
+  }
+
+  .foto-placeholder-sidebar {
+    font-size: 28px;
+  }
+
+  .nombre-usuario {
+    font-size: 20px;
+  }
+
+  .contenido-card {
+    padding: 20px;
+  }
+
+  .seccion-titulo-main {
+    font-size: 18px;
+  }
+
+  .timeline {
+    padding-left: 25px;
+  }
+
+  .timeline-punto {
+    left: -22px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .experiencias-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .empresa-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE PEQUEÑO
+   ======================================== */
+
+@media (max-width: 480px) {
+  .btn-volver-perfil {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stats-lista {
+    gap: 10px;
+  }
+
+  .stat-item {
+    padding: 10px;
+  }
+
+  .stat-numero {
+    font-size: 18px;
+  }
+
+  .timeline-cargo {
+    font-size: 16px;
+  }
+}

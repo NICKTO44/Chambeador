@@ -2,6 +2,10 @@ const { pool } = require('../config/database');
 const path = require('path');
 const fs = require('fs').promises;
 
+// ========================================
+// PERFIL PRIVADO (usuario autenticado)
+// ========================================
+
 // Obtener perfil completo del usuario
 const getPerfil = async (req, res) => {
   try {
@@ -10,7 +14,8 @@ const getPerfil = async (req, res) => {
         id, nombre, email, rol, telefono, tipo_documento, numero_documento,
         foto_perfil, biografia, ubicacion_perfil, sitio_web, perfil_completo,
         cv_archivo, experiencia, educacion, habilidades,
-        nombre_empresa, ruc_empresa, descripcion_empresa, sector_empresa, tamanio_empresa
+        nombre_empresa, ruc_empresa, descripcion_empresa, sector_empresa, tamanio_empresa,
+        created_at
       FROM usuarios 
       WHERE id = ?`,
       [req.user.id]
@@ -28,6 +33,117 @@ const getPerfil = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener perfil' });
   }
 };
+
+// ========================================
+// ✨ NUEVO: PERFIL PÚBLICO
+// ========================================
+
+// Obtener perfil público de cualquier usuario (sin datos sensibles)
+const getPerfilPublico = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Obtener datos básicos del usuario (SIN datos privados)
+    const [users] = await pool.query(
+      `SELECT 
+        id, nombre, rol,
+        foto_perfil, biografia, ubicacion_perfil, sitio_web,
+        experiencia, educacion, habilidades,
+        nombre_empresa, descripcion_empresa, sector_empresa, tamanio_empresa,
+        created_at
+      FROM usuarios 
+      WHERE id = ?`,
+      [id]
+    );
+
+    if (users.length === 0) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    const usuario = users[0];
+
+    // Obtener estadísticas de experiencias
+    const [statsExperiencias] = await pool.query(
+      `SELECT COUNT(*) as total_experiencias
+       FROM experiencias
+       WHERE usuario_id = ?`,
+      [id]
+    );
+
+    // Obtener total de likes recibidos en sus experiencias
+    const [statsLikes] = await pool.query(
+      `SELECT COUNT(*) as total_likes
+       FROM likes_experiencias le
+       INNER JOIN experiencias e ON le.experiencia_id = e.id
+       WHERE e.usuario_id = ?`,
+      [id]
+    );
+
+    // Obtener total de comentarios recibidos en sus experiencias
+    const [statsComentarios] = await pool.query(
+      `SELECT COUNT(*) as total_comentarios
+       FROM comentarios_experiencias ce
+       INNER JOIN experiencias e ON ce.experiencia_id = e.id
+       WHERE e.usuario_id = ?`,
+      [id]
+    );
+
+    // Obtener experiencias publicadas por este usuario (últimas 10)
+    const [experiencias] = await pool.query(
+      `SELECT 
+        e.*,
+        (SELECT COUNT(*) FROM likes_experiencias WHERE experiencia_id = e.id) as likes_count,
+        (SELECT COUNT(*) FROM comentarios_experiencias WHERE experiencia_id = e.id) as comentarios_count
+       FROM experiencias e
+       WHERE e.usuario_id = ?
+       ORDER BY e.created_at DESC
+       LIMIT 10`,
+      [id]
+    );
+
+    // Construir respuesta con datos públicos + estadísticas
+    res.json({
+      usuario: {
+        id: usuario.id,
+        nombre: usuario.nombre,
+        rol: usuario.rol,
+        foto_perfil: usuario.foto_perfil,
+        biografia: usuario.biografia,
+        ubicacion_perfil: usuario.ubicacion_perfil,
+        sitio_web: usuario.sitio_web,
+        created_at: usuario.created_at,
+        // Datos específicos por rol
+        ...(usuario.rol === 'trabajador' && {
+          experiencia: usuario.experiencia,
+          educacion: usuario.educacion,
+          habilidades: usuario.habilidades
+        }),
+        ...(usuario.rol === 'empleador' && {
+          nombre_empresa: usuario.nombre_empresa,
+          descripcion_empresa: usuario.descripcion_empresa,
+          sector_empresa: usuario.sector_empresa,
+          tamanio_empresa: usuario.tamanio_empresa
+        })
+      },
+      estadisticas: {
+        total_experiencias: statsExperiencias[0].total_experiencias,
+        total_likes: statsLikes[0].total_likes,
+        total_comentarios: statsComentarios[0].total_comentarios
+      },
+      experiencias
+    });
+
+  } catch (error) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('Error al obtener perfil público:', error);
+    }
+    res.status(500).json({ error: 'Error al obtener perfil público' });
+  }
+};
+
+// ========================================
+// ACTUALIZAR PERFIL
+// ========================================
 
 // Actualizar perfil (datos básicos sin archivos)
 const actualizarPerfil = async (req, res) => {
@@ -217,6 +333,7 @@ const verificarPerfilCompleto = async (userId) => {
 
 module.exports = {
   getPerfil,
+  getPerfilPublico, // ✨ NUEVO
   actualizarPerfil,
   subirFotoPerfil,
   subirCV

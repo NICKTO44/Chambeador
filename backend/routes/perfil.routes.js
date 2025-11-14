@@ -4,7 +4,15 @@ const perfilController = require('../controllers/perfil.controller');
 const { authenticateToken } = require('../middleware/auth');
 const { uploadFoto, uploadCV } = require('../config/multer');
 
-// Todas las rutas requieren autenticación
+// ========================================
+// RUTA PÚBLICA - Perfil público
+// ========================================
+// Esta ruta NO requiere autenticación (cualquiera puede ver perfiles)
+router.get('/publico/:id', perfilController.getPerfilPublico);
+
+// ========================================
+// RUTAS PRIVADAS - Requieren autenticación
+// ========================================
 router.use(authenticateToken);
 
 // Obtener perfil del usuario actual

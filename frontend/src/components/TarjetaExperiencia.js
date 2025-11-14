@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✨ NUEVO
 import { useAuth } from '../context/AuthContext';
 import './Experiencias.css';
 
@@ -6,6 +7,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
 function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, onExperienciaEliminada }) {
   const { usuario, token } = useAuth();
+  const navigate = useNavigate(); // ✨ NUEVO
   const [comentarios, setComentarios] = useState([]);
   const [mostrarComentarios, setMostrarComentarios] = useState(false);
   const [nuevoComentario, setNuevoComentario] = useState('');
@@ -110,6 +112,11 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
     }
   };
 
+  // ✨ NUEVO: Navegar al perfil público
+  const irAlPerfil = (userId) => {
+    navigate(`/perfil-publico/${userId}`);
+  };
+
   const formatearFecha = (fecha) => {
     const date = new Date(fecha);
     const ahora = new Date();
@@ -146,7 +153,12 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
       {/* Header con autor */}
       <div className="experiencia-header">
         <div className="autor-info">
-          <div className="autor-avatar">
+          {/* ✨ NUEVO: Avatar clickeable */}
+          <div 
+            className="autor-avatar clickeable" 
+            onClick={() => irAlPerfil(experiencia.usuario_id)}
+            title="Ver perfil"
+          >
             {experiencia.foto_usuario ? (
               <img src={`${API_URL}${experiencia.foto_usuario}`} alt={experiencia.nombre_usuario} />
             ) : (
@@ -156,7 +168,14 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
             )}
           </div>
           <div className="autor-datos">
-            <div className="autor-nombre">{experiencia.nombre_usuario}</div>
+            {/* ✨ NUEVO: Nombre clickeable */}
+            <div 
+              className="autor-nombre clickeable" 
+              onClick={() => irAlPerfil(experiencia.usuario_id)}
+              title="Ver perfil"
+            >
+              {experiencia.nombre_usuario}
+            </div>
             <div className="experiencia-fecha">{formatearFecha(experiencia.created_at)}</div>
           </div>
         </div>
@@ -259,7 +278,12 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
             ) : (
               comentarios.map(comentario => (
                 <div key={comentario.id} className="comentario-item">
-                  <div className="comentario-avatar">
+                  {/* ✨ NUEVO: Avatar del comentario clickeable */}
+                  <div 
+                    className="comentario-avatar clickeable" 
+                    onClick={() => irAlPerfil(comentario.usuario_id)}
+                    title="Ver perfil"
+                  >
                     {comentario.foto_usuario ? (
                       <img src={`${API_URL}${comentario.foto_usuario}`} alt={comentario.nombre_usuario} />
                     ) : (
@@ -269,7 +293,14 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
                     )}
                   </div>
                   <div className="comentario-contenido">
-                    <div className="comentario-autor">{comentario.nombre_usuario}</div>
+                    {/* ✨ NUEVO: Nombre del comentario clickeable */}
+                    <div 
+                      className="comentario-autor clickeable" 
+                      onClick={() => irAlPerfil(comentario.usuario_id)}
+                      title="Ver perfil"
+                    >
+                      {comentario.nombre_usuario}
+                    </div>
                     <div className="comentario-texto">{comentario.comentario}</div>
                     <div className="comentario-fecha">{formatearFecha(comentario.created_at)}</div>
                   </div>

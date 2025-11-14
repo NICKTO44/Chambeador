@@ -12,7 +12,8 @@ import PublicarTrabajoPage from './pages/PublicarTrabajoPage';
 import MisPublicacionesPage from './pages/MisPublicacionesPage';
 import PerfilPage from './pages/PerfilPage';
 import AdminPage from './pages/AdminPage';
-import ExperienciasPage from './pages/ExperienciasPage'; // ✨ NUEVO
+import ExperienciasPage from './pages/ExperienciasPage';
+import PerfilPublico from './pages/PerfilPublico'; // ✨ NUEVO
 
 import './App.css';
 
@@ -28,8 +29,11 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registro" element={<RegistroPage />} />
 
-            {/* ✨ NUEVA RUTA: Experiencias (pública pero con más funciones si estás autenticado) */}
+            {/* Experiencias (pública pero con más funciones si estás autenticado) */}
             <Route path="/experiencias" element={<ExperienciasPage />} />
+
+            {/* ✨ NUEVO: Perfil público (cualquiera puede ver) */}
+            <Route path="/perfil-publico/:id" element={<PerfilPublico />} />
 
             {/* Rutas protegidas - Solo empleadores */}
             <Route 

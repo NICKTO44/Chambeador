@@ -207,3 +207,84 @@ WHERE clave = 'precio_publicacion';
 UPDATE configuracion 
 SET valor = '15.00' 
 WHERE clave = 'precio_renovacion';
+
+
+
+ALTER TABLE usuarios 
+ADD COLUMN foto_perfil VARCHAR(255) DEFAULT NULL AFTER numero_documento,
+ADD COLUMN biografia TEXT DEFAULT NULL AFTER foto_perfil,
+ADD COLUMN ubicacion_perfil VARCHAR(200) DEFAULT NULL AFTER biografia,
+ADD COLUMN sitio_web VARCHAR(255) DEFAULT NULL AFTER ubicacion_perfil,
+ADD COLUMN perfil_completo BOOLEAN DEFAULT FALSE AFTER sitio_web;
+
+ALTER TABLE usuarios
+ADD COLUMN cv_archivo VARCHAR(255) DEFAULT NULL AFTER perfil_completo,
+ADD COLUMN experiencia TEXT DEFAULT NULL AFTER cv_archivo,
+ADD COLUMN educacion TEXT DEFAULT NULL AFTER experiencia,
+ADD COLUMN habilidades TEXT DEFAULT NULL AFTER educacion;
+
+ALTER TABLE usuarios
+ADD COLUMN nombre_empresa VARCHAR(200) DEFAULT NULL AFTER habilidades,
+ADD COLUMN ruc_empresa VARCHAR(11) DEFAULT NULL AFTER nombre_empresa,
+ADD COLUMN descripcion_empresa TEXT DEFAULT NULL AFTER ruc_empresa,
+ADD COLUMN sector_empresa VARCHAR(100) DEFAULT NULL AFTER descripcion_empresa,
+ADD COLUMN tamanio_empresa ENUM('1-10', '11-50', '51-200', '201-500', '500+') DEFAULT NULL AFTER sector_empresa;
+
+ALTER TABLE usuarios
+ADD INDEX idx_perfil_completo (perfil_completo),
+ADD INDEX idx_sector_empresa (sector_empresa);
+
+-- Verificar
+DESCRIBE usuarios;
+
+EXIT;
+-- ========================================
+-- TABLA: experiencias
+-- ========================================
+CREATE TABLE experiencias (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_id INT NOT NULL,
+  titulo VARCHAR(200) NOT NULL,
+  nombre_empresa VARCHAR(200) NOT NULL,
+  descripcion TEXT NOT NULL,
+  tipo_experiencia ENUM('negativa', 'positiva', 'neutral') DEFAULT 'negativa',
+  media_url VARCHAR(255) DEFAULT NULL,
+  media_type ENUM('imagen', 'video') DEFAULT NULL,
+  likes_count INT DEFAULT 0,
+  comentarios_count INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  INDEX idx_tipo (tipo_experiencia),
+  INDEX idx_fecha (created_at DESC),
+  INDEX idx_usuario (usuario_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ========================================
+-- TABLA: likes_experiencias
+-- ========================================
+CREATE TABLE likes_experiencias (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  experiencia_id INT NOT NULL,
+  usuario_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (experiencia_id) REFERENCES experiencias(id) ON DELETE CASCADE,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  UNIQUE KEY unique_like (experiencia_id, usuario_id),
+  INDEX idx_experiencia (experiencia_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ========================================
+-- TABLA: comentarios_experiencias
+-- ========================================
+CREATE TABLE comentarios_experiencias (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  experiencia_id INT NOT NULL,
+  usuario_id INT NOT NULL,
+  comentario TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (experiencia_id) REFERENCES experiencias(id) ON DELETE CASCADE,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  INDEX idx_experiencia (experiencia_id),
+  INDEX idx_fecha (created_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

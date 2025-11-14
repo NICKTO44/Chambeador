@@ -916,3 +916,465 @@
     font-size: 40px;
   }
 }
+/* ========================================
+   ESTILOS PARA PERFIL PÚBLICO CLICKEABLE
+   ======================================== */
+
+/* Hacer el nombre y avatar clickeables */
+.autor-nombre-link {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.autor-nombre-link:hover {
+  color: #D4A017;
+  text-decoration: none;
+}
+
+.autor-avatar-clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.autor-avatar-clickeable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.3);
+}
+
+/* Comentarios - nombre clickeable */
+.comentario-autor-link {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.comentario-autor-link:hover {
+  color: #D4A017;
+  text-decoration: none;
+}
+
+/* Avatar de comentario clickeable */
+.comentario-avatar-clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comentario-avatar-clickeable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.3);
+}
+
+/* Avatar placeholder clickeable */
+.avatar-placeholder-clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.avatar-placeholder-clickeable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.3);
+}
+
+/* Avatar pequeño en comentarios clickeable */
+.avatar-placeholder-small-clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.avatar-placeholder-small-clickeable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.3);
+}
+
+/* ========================================
+   ESTILOS PARA PERFIL PÚBLICO CLICKEABLE
+   ======================================== */
+
+/* Clase genérica para elementos clickeables */
+.clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* ========================================
+   AUTOR EN EXPERIENCIAS - CLICKEABLE
+   ======================================== */
+
+/* Nombre del autor clickeable */
+.autor-nombre.clickeable {
+  display: inline-block;
+  position: relative;
+}
+
+.autor-nombre.clickeable::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4A017;
+  transition: width 0.3s ease;
+}
+
+.autor-nombre.clickeable:hover {
+  color: #D4A017;
+}
+
+.autor-nombre.clickeable:hover::after {
+  width: 100%;
+}
+
+/* Avatar del autor clickeable */
+.autor-avatar.clickeable {
+  position: relative;
+}
+
+.autor-avatar.clickeable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.autor-avatar.clickeable:hover::before {
+  border-color: #D4A017;
+  transform: scale(1.05);
+}
+
+.autor-avatar.clickeable:hover {
+  transform: scale(1.05);
+}
+
+.autor-avatar.clickeable .avatar-placeholder {
+  transition: all 0.3s ease;
+}
+
+.autor-avatar.clickeable:hover .avatar-placeholder {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+}
+
+/* ========================================
+   COMENTARIOS - CLICKEABLE
+   ======================================== */
+
+/* Nombre en comentario clickeable */
+.comentario-autor.clickeable {
+  display: inline-block;
+  position: relative;
+}
+
+.comentario-autor.clickeable::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4A017;
+  transition: width 0.3s ease;
+}
+
+.comentario-autor.clickeable:hover {
+  color: #D4A017;
+}
+
+.comentario-autor.clickeable:hover::after {
+  width: 100%;
+}
+
+/* Avatar en comentario clickeable */
+.comentario-avatar.clickeable {
+  position: relative;
+}
+
+.comentario-avatar.clickeable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.comentario-avatar.clickeable:hover::before {
+  border-color: #D4A017;
+  transform: scale(1.08);
+}
+
+.comentario-avatar.clickeable:hover {
+  transform: scale(1.08);
+}
+
+.comentario-avatar.clickeable .avatar-placeholder-small {
+  transition: all 0.3s ease;
+}
+
+.comentario-avatar.clickeable:hover .avatar-placeholder-small {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+}
+
+/* ========================================
+   EFECTOS ADICIONALES
+   ======================================== */
+
+/* Efecto de "pop" al hacer click */
+.clickeable:active {
+  transform: scale(0.95);
+}
+
+/* Cambiar cursor a pointer en toda la tarjeta cuando hover sobre clickeable */
+.experiencia-header .clickeable,
+.comentario-item .clickeable {
+  user-select: none;
+}
+
+/* Tooltip visual (opcional - ya está en title) */
+.clickeable[title]:hover::after {
+  /* El title nativo del navegador ya muestra "Ver perfil" */
+  opacity: 1;
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible para navegación con teclado */
+.clickeable:focus {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Mejorar contraste en modo oscuro (si lo implementas) */
+@media (prefers-color-scheme: dark) {
+  .clickeable:focus {
+    outline-color: #B8860B;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* En mobile, hacer el área clickeable un poco más grande */
+  .autor-avatar.clickeable,
+  .comentario-avatar.clickeable {
+    padding: 2px;
+    margin: -2px;
+  }
+  
+  /* Reducir efecto de escala en mobile */
+  .autor-avatar.clickeable:hover,
+  .comentario-avatar.clickeable:hover {
+    transform: scale(1.03);
+  }
+}
+
+/* ========================================
+   ESTILOS PARA PERFIL PÚBLICO CLICKEABLE
+   ======================================== */
+
+/* Clase genérica para elementos clickeables */
+.clickeable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* ========================================
+   AUTOR EN EXPERIENCIAS - CLICKEABLE
+   ======================================== */
+
+/* Nombre del autor clickeable */
+.autor-nombre.clickeable {
+  display: inline-block;
+  position: relative;
+}
+
+.autor-nombre.clickeable::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4A017;
+  transition: width 0.3s ease;
+}
+
+.autor-nombre.clickeable:hover {
+  color: #D4A017;
+}
+
+.autor-nombre.clickeable:hover::after {
+  width: 100%;
+}
+
+/* Avatar del autor clickeable */
+.autor-avatar.clickeable {
+  position: relative;
+}
+
+.autor-avatar.clickeable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.autor-avatar.clickeable:hover::before {
+  border-color: #D4A017;
+  transform: scale(1.05);
+}
+
+.autor-avatar.clickeable:hover {
+  transform: scale(1.05);
+}
+
+.autor-avatar.clickeable .avatar-placeholder {
+  transition: all 0.3s ease;
+}
+
+.autor-avatar.clickeable:hover .avatar-placeholder {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+}
+
+/* ========================================
+   COMENTARIOS - CLICKEABLE
+   ======================================== */
+
+/* Nombre en comentario clickeable */
+.comentario-autor.clickeable {
+  display: inline-block;
+  position: relative;
+}
+
+.comentario-autor.clickeable::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4A017;
+  transition: width 0.3s ease;
+}
+
+.comentario-autor.clickeable:hover {
+  color: #D4A017;
+}
+
+.comentario-autor.clickeable:hover::after {
+  width: 100%;
+}
+
+/* Avatar en comentario clickeable */
+.comentario-avatar.clickeable {
+  position: relative;
+}
+
+.comentario-avatar.clickeable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.comentario-avatar.clickeable:hover::before {
+  border-color: #D4A017;
+  transform: scale(1.08);
+}
+
+.comentario-avatar.clickeable:hover {
+  transform: scale(1.08);
+}
+
+.comentario-avatar.clickeable .avatar-placeholder-small {
+  transition: all 0.3s ease;
+}
+
+.comentario-avatar.clickeable:hover .avatar-placeholder-small {
+  background: linear-gradient(135deg, #B8860B 0%, #9a7209 100%);
+}
+
+/* ========================================
+   EFECTOS ADICIONALES
+   ======================================== */
+
+/* Efecto de "pop" al hacer click */
+.clickeable:active {
+  transform: scale(0.95);
+}
+
+/* Cambiar cursor a pointer en toda la tarjeta cuando hover sobre clickeable */
+.experiencia-header .clickeable,
+.comentario-item .clickeable {
+  user-select: none;
+}
+
+/* Tooltip visual (opcional - ya está en title) */
+.clickeable[title]:hover::after {
+  /* El title nativo del navegador ya muestra "Ver perfil" */
+  opacity: 1;
+}
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Focus visible para navegación con teclado */
+.clickeable:focus {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Mejorar contraste en modo oscuro (si lo implementas) */
+@media (prefers-color-scheme: dark) {
+  .clickeable:focus {
+    outline-color: #B8860B;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* En mobile, hacer el área clickeable un poco más grande */
+  .autor-avatar.clickeable,
+  .comentario-avatar.clickeable {
+    padding: 2px;
+    margin: -2px;
+  }
+  
+  /* Reducir efecto de escala en mobile */
+  .autor-avatar.clickeable:hover,
+  .comentario-avatar.clickeable:hover {
+    transform: scale(1.03);
+  }
+}
