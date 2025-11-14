@@ -101,7 +101,7 @@ function ExperienciasPage() {
             className="btn-nueva-experiencia"
             onClick={() => setMostrarFormulario(!mostrarFormulario)}
           >
-            {mostrarFormulario ? '✕ Cancelar' : '✨ Compartir Experiencia'}
+            {mostrarFormulario ? '✕ Cancelar' : ' Compartir Experiencia'}
           </button>
         )}
       </div>
@@ -120,25 +120,25 @@ function ExperienciasPage() {
           className={`filtro-btn ${filtroTipo === 'todas' ? 'activo' : ''}`}
           onClick={() => setFiltroTipo('todas')}
         >
-          🌐 Todas
+          Todas
         </button>
         <button 
           className={`filtro-btn ${filtroTipo === 'negativa' ? 'activo' : ''}`}
           onClick={() => setFiltroTipo('negativa')}
         >
-          ⚠️ Negativas
+           Negativas
         </button>
         <button 
           className={`filtro-btn ${filtroTipo === 'positiva' ? 'activo' : ''}`}
           onClick={() => setFiltroTipo('positiva')}
         >
-          ✅ Positivas
+          Positivas
         </button>
         <button 
           className={`filtro-btn ${filtroTipo === 'neutral' ? 'activo' : ''}`}
           onClick={() => setFiltroTipo('neutral')}
         >
-          💡 Neutrales
+           Neutrales
         </button>
       </div>
 

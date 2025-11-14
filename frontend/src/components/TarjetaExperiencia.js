@@ -215,9 +215,9 @@ function TarjetaExperiencia({ experiencia, onLikeToggle, onComentarioAgregado, o
 
   const getTipoBadge = (tipo) => {
     const tipos = {
-      negativa: { emoji: '⚠️', texto: 'Experiencia Negativa', clase: 'badge-negativa' },
-      positiva: { emoji: '✅', texto: 'Experiencia Positiva', clase: 'badge-positiva' },
-      neutral: { emoji: '💡', texto: 'Experiencia Neutral', clase: 'badge-neutral' }
+      negativa: { emoji: '', texto: 'Experiencia Negativa', clase: 'badge-negativa' },
+      positiva: { emoji: '', texto: 'Experiencia Positiva', clase: 'badge-positiva' },
+      neutral: { emoji: '', texto: 'Experiencia Neutral', clase: 'badge-neutral' }
     };
     return tipos[tipo] || tipos.neutral;
   };

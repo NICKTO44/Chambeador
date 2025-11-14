@@ -54,7 +54,7 @@ function Navbar() {
 
             {/* ✨ NUEVO: Enlace a Experiencias (visible para todos) */}
             <button className="nav-link" onClick={() => handleNavegar('/experiencias')}>
-              🗣️ Experiencias
+              Experiencias
             </button>
 
             {usuario ? (
@@ -72,14 +72,14 @@ function Navbar() {
 
                 {usuario.rol === 'admin' && (
                   <button className="nav-link nav-admin" onClick={() => handleNavegar('/admin')}>
-                    ⚙️ Panel Admin
+                     Panel Admin
                   </button>
                 )}
 
                 {/* MI PERFIL */}
                 {usuario.rol !== 'admin' && (
                   <button className="nav-link nav-perfil" onClick={() => handleNavegar('/perfil')}>
-                    👤 Mi Perfil
+                    Mi Perfil
                   </button>
                 )}
 
