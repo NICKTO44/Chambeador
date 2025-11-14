@@ -1,0 +1,214 @@
+/* ========================================
+   MODAL DE COMPARTIR - MINI Y COMPACTO
+   ======================================== */
+
+.compartir-container {
+  position: relative;
+}
+
+.compartir-modal {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  z-index: 1000;
+  min-width: 280px;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.compartir-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.compartir-opciones {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.compartir-opcion {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.compartir-opcion svg {
+  width: 22px;
+  height: 22px;
+}
+
+.compartir-opcion:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.compartir-opcion:active {
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Colores de cada red social */
+.compartir-opcion.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.compartir-opcion.whatsapp:hover {
+  background: #20ba5a;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.compartir-opcion.twitter {
+  background: #000000;
+  color: white;
+}
+
+.compartir-opcion.twitter:hover {
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.compartir-opcion.facebook {
+  background: #1877F2;
+  color: white;
+}
+
+.compartir-opcion.facebook:hover {
+  background: #0d66d9;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.4);
+}
+
+.compartir-opcion.linkedin {
+  background: #0A66C2;
+  color: white;
+}
+
+.compartir-opcion.linkedin:hover {
+  background: #084d93;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
+}
+
+.compartir-opcion.copiar {
+  background: #D4A017;
+  color: white;
+}
+
+.compartir-opcion.copiar:hover {
+  background: #B8860B;
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.4);
+}
+
+/* Mensaje de link copiado */
+.link-copiado-msg {
+  text-align: center;
+  color: #4CAF50;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Triángulo/flecha apuntando al botón */
+.compartir-modal::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .compartir-modal {
+    min-width: 260px;
+    padding: 12px;
+    bottom: 45px;
+  }
+
+  .compartir-opciones {
+    gap: 8px;
+  }
+
+  .compartir-opcion {
+    width: 40px;
+    height: 40px;
+  }
+
+  .compartir-opcion svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .compartir-header {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .compartir-modal {
+    min-width: 240px;
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  .compartir-modal::after {
+    left: auto;
+    right: 20px;
+    transform: none;
+  }
+
+  .compartir-opciones {
+    gap: 6px;
+  }
+
+  .compartir-opcion {
+    width: 38px;
+    height: 38px;
+  }
+
+  .compartir-opcion svg {
+    width: 18px;
+    height: 18px;
+  }
+}
