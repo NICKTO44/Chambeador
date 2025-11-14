@@ -1378,8 +1378,6 @@
     transform: scale(1.03);
   }
 }
-
-
 /* ========================================
    MODAL DE COMPARTIR - ULTRA COMPACTO
    ======================================== */
@@ -1397,7 +1395,7 @@
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   padding: 10px 12px;
-  z-index: 1000;
+  z-index: 10000; /* Más alto que el botón flotante */
   min-width: 200px;
   animation: fadeInLeft 0.3s ease;
 }
@@ -1534,9 +1532,10 @@
 @media (max-width: 767px) {
   .compartir-modal {
     /* En mobile, aparece arriba del botón */
-    bottom: 50px;
-    right: 50%;
-    transform: translateX(50%);
+    bottom: 55px;
+    right: 0;
+    left: auto;
+    transform: none;
     margin-right: 0;
     min-width: 180px;
     padding: 8px 10px;
@@ -1546,8 +1545,9 @@
     /* Flecha apunta hacia abajo en mobile */
     top: auto;
     bottom: -8px;
-    right: 50%;
-    transform: translateX(50%);
+    right: 40px;
+    left: auto;
+    transform: none;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid white;
