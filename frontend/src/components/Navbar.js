@@ -52,6 +52,11 @@ function Navbar() {
               Ver Trabajos
             </button>
 
+            {/* ✨ NUEVO: Enlace a Experiencias (visible para todos) */}
+            <button className="nav-link" onClick={() => handleNavegar('/experiencias')}>
+              🗣️ Experiencias
+            </button>
+
             {usuario ? (
               <>
                 {usuario.rol === 'empleador' && (

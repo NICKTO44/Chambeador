@@ -12,6 +12,7 @@ import PublicarTrabajoPage from './pages/PublicarTrabajoPage';
 import MisPublicacionesPage from './pages/MisPublicacionesPage';
 import PerfilPage from './pages/PerfilPage';
 import AdminPage from './pages/AdminPage';
+import ExperienciasPage from './pages/ExperienciasPage'; // ✨ NUEVO
 
 import './App.css';
 
@@ -26,6 +27,9 @@ function App() {
             <Route path="/trabajos" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registro" element={<RegistroPage />} />
+
+            {/* ✨ NUEVA RUTA: Experiencias (pública pero con más funciones si estás autenticado) */}
+            <Route path="/experiencias" element={<ExperienciasPage />} />
 
             {/* Rutas protegidas - Solo empleadores */}
             <Route 
