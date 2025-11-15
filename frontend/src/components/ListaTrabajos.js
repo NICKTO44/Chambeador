@@ -148,34 +148,35 @@ function ListaTrabajos({ onCambiarVista }) {
     );
   };
 
- // SEO dinámico según filtros - VERSIÓN OPTIMIZADA
-const getSEOTitle = () => {
-  if (categoriaFiltro) {
-    return `Ofertas de Trabajo de ${categoriaFiltro} en Perú - El Chambeador`;
-  }
-  if (busqueda) {
-    return `Ofertas de "${busqueda}" - Bolsa de Trabajo El Chambeador`;
-  }
-  return "Ofertas de Trabajo y Empleo en Perú - El Chambeador | Bolsa de Trabajo Gratis";
-};
+  // SEO dinámico según filtros - OPTIMIZADO PARA CUSCO
+  const getSEOTitle = () => {
+    if (categoriaFiltro) {
+      return `Trabajos de ${categoriaFiltro} en Cusco - El Chambeador | ${totalResultados} Ofertas`;
+    }
+    if (busqueda) {
+      return `Empleos de "${busqueda}" en Cusco - El Chambeador`;
+    }
+    return "El Chambeador - Trabajos y Empleos en Cusco, Perú | Bolsa de Trabajo Gratis 2025";
+  };
 
-const getSEODescription = () => {
-  if (categoriaFiltro) {
-    return `${totalResultados} ofertas de trabajo de ${categoriaFiltro} disponibles en Perú. Encuentra empleo en ${categoriaFiltro} actualizado diariamente. Bolsa de trabajo gratis en El Chambeador.`;
-  }
-  if (busqueda) {
-    return `${totalResultados} ofertas de trabajo encontradas para "${busqueda}". Encuentra tu próximo empleo en El Chambeador - Portal de trabajo y bolsa de empleo en Perú.`;
-  }
-  return "Miles de ofertas de trabajo y empleo en Perú. Bolsa de trabajo gratis con oportunidades en construcción, gastronomía, tecnología, limpieza, transporte, salud, educación, comercio y más. Actualizado diariamente. ¡Encuentra tu próxima chamba!";
-};
+  const getSEODescription = () => {
+    if (categoriaFiltro) {
+      return `${totalResultados} ofertas de trabajo de ${categoriaFiltro} en Cusco, Perú. Encuentra empleo en ${categoriaFiltro} con El Chambeador. Bolsa de trabajo gratis actualizada diariamente.`;
+    }
+    if (busqueda) {
+      return `${totalResultados} ofertas de trabajo "${busqueda}" en Cusco. Encuentra tu próximo empleo en El Chambeador - Portal de trabajo líder en Cusco, Perú.`;
+    }
+    return "El Chambeador es la bolsa de trabajo líder en Cusco, Perú. Miles de ofertas de empleo en construcción, gastronomía, tecnología, limpieza, transporte y más. ¡Encuentra tu próxima chamba gratis!";
+  };
+
   return (
     <div className="lista-trabajos-container">
       {/* SEO Component */}
-    <SEO 
-  title={getSEOTitle()}
-  description={getSEODescription()}
-  keywords={`ofertas de trabajo, ofertas de empleo, bolsa de trabajo, buscar trabajo, empleo ${categoriaFiltro || 'peru'}, trabajo ${categoriaFiltro || 'peru'}, chambeador, portal de empleo, oportunidades laborales, vacantes`}
-/>
+      <SEO 
+        title={getSEOTitle()}
+        description={getSEODescription()}
+        keywords={`el chambeador, trabajos cusco, empleos cusco, bolsa de trabajo cusco, ofertas de empleo cusco peru, trabajo cusco, chambeador, portal empleo cusco, ${categoriaFiltro || 'oportunidades laborales'}`}
+      />
 
       <BannerContacto />
 
@@ -184,18 +185,28 @@ const getSEODescription = () => {
         {/* Logo profesional grande */}
         <div className="hero-logo-container">
           <img 
-             src={`${process.env.PUBLIC_URL}/logo-chambeador.png`}
-
-            alt="El Chambeador - Portal de Oportunidades Laborales en Perú" 
+            src={`${process.env.PUBLIC_URL}/logo-chambeador.png`}
+            alt="El Chambeador - Portal de Trabajos y Empleos en Cusco, Perú" 
             className="hero-logo"
           />
         </div>
         
-        {/* Contenido del hero */}
+        {/* Contenido del hero OPTIMIZADO PARA SEO */}
         <div className="hero-content">
-          <h1>Encuentra tu próxima oportunidad</h1>
-          <p>Conectamos trabajadores con empleadores en todo el país</p>
+          <h1>El Chambeador - Encuentra tu próxima chamba en Cusco</h1>
+          <p>El Chambeador conecta trabajadores con empleadores en Cusco y todo el Perú. Miles de oportunidades laborales actualizadas diariamente.</p>
         </div>
+      </div>
+
+      {/* SECCIÓN SOBRE EL CHAMBEADOR (NUEVO - SEO) */}
+      <div className="about-chambeador-section">
+        <p className="about-chambeador-text">
+          <strong>El Chambeador</strong> es la bolsa de trabajo líder en Cusco, Perú. 
+          Somos un portal gratuito que conecta a trabajadores con empresas en construcción, 
+          gastronomía, tecnología, limpieza, transporte, salud, educación y comercio. 
+          Con <strong>El Chambeador</strong>, encontrar empleo en Cusco es fácil, rápido y completamente gratis. 
+          ¿Buscas chamba? ¡Estás en el lugar correcto!
+        </p>
       </div>
 
       {/* Buscador Inteligente */}
@@ -233,7 +244,7 @@ const getSEODescription = () => {
       {cargando ? (
         <div className="cargando">
           <div className="spinner"></div>
-          <p>Buscando trabajos...</p>
+          <p>Buscando trabajos en El Chambeador...</p>
         </div>
       ) : trabajos.length === 0 ? (
         <div className="sin-resultados">

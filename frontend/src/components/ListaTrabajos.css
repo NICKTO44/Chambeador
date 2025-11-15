@@ -799,3 +799,56 @@ html {
 .paginacion {
   transition: all 0.3s ease;
 }
+
+/* ========================================
+   SECCIÓN SOBRE EL CHAMBEADOR (SEO)
+   ======================================== */
+
+.about-chambeador-section {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+  border-left: 4px solid #D4A017;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.about-chambeador-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
+
+.about-chambeador-text strong {
+  color: #D4A017;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-chambeador-section {
+    margin: 20px 15px;
+    padding: 20px 15px;
+  }
+
+  .about-chambeador-text {
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-chambeador-section {
+    margin: 15px 10px;
+    padding: 15px 12px;
+  }
+
+  .about-chambeador-text {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
