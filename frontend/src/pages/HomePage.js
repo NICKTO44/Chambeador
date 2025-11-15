@@ -6,10 +6,11 @@ function HomePage() {
   return (
     <>
       <Helmet>
-        <title>El Chambeador - Encuentra tu próxima oportunidad laboral en Perú</title>
-        <meta name="description" content="Portal de empleos en Perú. Conectamos trabajadores con empleadores en construcción, tecnología, gastronomía y más." />
-        <meta property="og:title" content="El Chambeador - Oportunidades laborales en Perú" />
-        <meta property="og:description" content="Encuentra trabajos en tu ciudad. Miles de oportunidades disponibles." />
+        <title>El Chambeador - Trabajos y Empleos en Cusco, Perú | Bolsa de Trabajo Gratis 2025</title>
+        <meta name="description" content="Encuentra trabajo en Cusco. Miles de ofertas de empleo en Cusco y Perú en construcción, gastronomía, tecnología, limpieza, transporte y más. Bolsa de trabajo gratis actualizada diariamente." />
+        <meta name="keywords" content="trabajos cusco, empleos cusco, bolsa de trabajo cusco, ofertas empleo cusco peru, trabajo cusco, el chambeador, oportunidades laborales cusco, portal empleo cusco" />
+        <meta property="og:title" content="El Chambeador - Trabajos en Cusco, Perú" />
+        <meta property="og:description" content="Miles de ofertas de trabajo en Cusco. Encuentra tu próxima chamba en construcción, gastronomía, tecnología y más." />
         <link rel="canonical" href="https://elchambeador.info/trabajos" />
       </Helmet>
       <ListaTrabajos />

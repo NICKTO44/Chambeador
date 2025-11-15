@@ -2,10 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 function SEO({ 
-  title = "El Chambeador - Portal de Oportunidades Laborales en Perú",
-  description = "Encuentra trabajo en Perú con El Chambeador. Conectamos trabajadores con empleadores en todas las categorías.",
-  keywords = "trabajo peru, empleo peru, chambeador, oportunidades laborales",
-  image = "https://elchambeador.info/images/logo-chambeador.png",
+  title = "El Chambeador - Trabajos y Empleos en Cusco, Perú | Bolsa de Trabajo Gratis",
+  description = "Encuentra trabajo en Cusco con El Chambeador. Miles de ofertas de empleo en Cusco y Perú. Bolsa de trabajo gratis en todas las categorías laborales.",
+  keywords = "trabajos cusco, empleos cusco, bolsa trabajo cusco, el chambeador, trabajo cusco peru, oportunidades laborales cusco, portal empleo cusco",
+  image = "https://elchambeador.info/logo-chambeador.png",
   url = "https://elchambeador.info"
 }) {
   return (
