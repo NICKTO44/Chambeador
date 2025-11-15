@@ -1,6 +1,3 @@
-# Robots.txt para El Chambeador
-# https://elchambeador.info
-
 User-agent: *
 Allow: /
 Allow: /trabajos
@@ -8,13 +5,11 @@ Allow: /experiencias
 Allow: /registro
 Allow: /login
 
-# No indexar perfiles privados ni admin
 Disallow: /perfil
 Disallow: /admin
 Disallow: /publicar-trabajo
 Disallow: /mis-publicaciones
 
-# Permitir acceso a recursos
 Allow: /static/
 Allow: /logo-chambeador.png
 Allow: /*.css
@@ -24,8 +19,4 @@ Allow: /*.jpg
 Allow: /*.jpeg
 Allow: /*.webp
 
-# Sitemap
 Sitemap: https://elchambeador.info/sitemap.xml
-
-# Crawl-delay (cortesía)
-Crawl-delay: 1
